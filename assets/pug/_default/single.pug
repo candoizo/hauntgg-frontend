@@ -1,0 +1,30 @@
+| {{ define "main" }}
+
+.markdown.post
+  article
+    //- .post-title
+    header
+      h3 {{ .Title }}
+
+      | {{ if eq .Type "post"}}
+      time(datetime!='{{ .PublishDate.Format "2006-01-02" }}') {{ partial "icon.html" (dict "ctx" $ "name" "watch") }} {{ i18n "reading_time" .ReadingTime }}
+      | {{ end }}
+
+    | {{ .Content }} 
+
+    //- | {{- if (eq .Params.contact true) -}} {{- partial "contact.html" . -}} 
+    //- | {{- end -}}
+
+  //- .post-footer
+  //- 
+  //-   .info
+  //- 
+  //-     | {{ with .Page.Params.Categories }}
+  //-     | {{ partial "taxonomy/categories.html" . }}
+  //-     | {{ end }} 
+  //- 
+  //-     | {{ with .Page.Params.Tags }}
+  //-     | {{ partial "taxonomy/tags.html" . }}
+  //-     | {{ end }}
+
+| {{ end }}

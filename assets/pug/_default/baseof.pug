@@ -1,0 +1,17 @@
+doctype html
+html(
+  lang="{{- site.Language.Lang -}}" data-theme="{{- .Site.Params.displayMode -}}"
+) 
+  head {{- partial "head.html" . -}}
+
+  body(class=`${process.env.NODE_ENV === 'release' ? '' : 'debug-screens' }`)
+
+    main
+      | {{ partial "navbar.html" . }}
+
+      section
+        //- | {{.Params}} {{.Type}}
+        |  {{- block "main" . }}{{- end }}
+        
+
+    | {{- partial "footer.html" . -}} 

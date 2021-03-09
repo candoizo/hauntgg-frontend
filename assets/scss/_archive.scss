@@ -1,0 +1,22 @@
+.archive {
+  // @apply w-full leading-loose;
+  a.listing-item {
+    @apply flex justify-between w-full;
+  }
+  // posts inside article
+  ul > .listing {
+    @apply mb-1;
+  }
+}
+
+.list-with-title {
+  @apply m-6 text-sm;
+
+  @screen md {
+    @apply m-12
+  }
+
+  .listing-title {
+    @apply text-2xl font-semibold leading-loose; //leading-relaxed;
+  }
+}

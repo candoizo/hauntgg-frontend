@@ -1,0 +1,95 @@
+{
+  "name": "gotchi-index",
+  "scripts": {
+    "gulp": "gulp --cwd . -f assets/gulpfile.js",
+    "docker": "[[ $NODE_ENV == release ]] && echo '\n  [!] NODE_ENV=release'; cd docker && docker-compose",
+    "update-browserslist": "npx browserslist@latest --update-db"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "if [[ $(git rev-parse --abbrev-ref HEAD) = preview ]] || [[ $(git rev-parse --abbrev-ref HEAD) = release ]]; then echo \"❎ Only merges allowed directly to: $(git rev-parse --abbrev-ref HEAD)\" && exit 1; else yarn run eslint . && rm -f CHANGELOG.md && yarn run gitmoji-changelog && git add CHANGELOG.md; fi",
+      "commit-msg": "[ -f .git/MERGE_MSG ] && sed -i 's/^Merge/:twisted_rightwards_arrows: merge:/g' .git/MERGE_MSG; commitlint -E HUSKY_GIT_PARAMS || exit 1; [[ $(git rev-parse --abbrev-ref HEAD) = release ]] && yarn run semantic-release || exit 0"
+    }
+  },
+  "author": "candoizo <candoizo@protonmail.com>",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.com/candoizo/gotchi-index.git"
+  },
+  "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@gitmoji-changelog/cli": "^1.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/gitlab": "^6.0.9",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "autoprefixer": "^10.2.5",
+    "browser-sync": "^2.26.14",
+    "browserslist": "^4.16.3",
+    "commitlint-config-gitmoji": "2.2.3",
+    "css-declaration-sorter": "^6.0.2",
+    "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
+    "debug": "^4.3.1",
+    "eslint": "^7.21.0",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-markdown": "^2.0.0",
+    "eslint-plugin-md": "^1.0.19",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-yaml": "^0.3.0",
+    "gulp": "^4.0.2",
+    "gulp-beautify": "^3.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^4.0.2",
+    "gulp-debug": "^4.0.0",
+    "gulp-execa": "^2.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-real-favicon": "^0.3.2",
+    "gulp-rimraf": "^1.0.0",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-webp": "^4.0.1",
+    "husky": "5.1.3",
+    "postcss": "^8.2.7",
+    "postcss-cli": "^8.3.1",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-uncss": "^0.17.0",
+    "readable-stream": "^3.6.0",
+    "require-dir": "^1.2.0",
+    "semantic-release": "^17.4.1",
+    "semantic-release-gitmoji": "^1.3.4",
+    "stylelint": "^13.12.0",
+    "stylelint-config-standard": "^21.0.0",
+    "tailwind-caret-color": "^1.1.0",
+    "tailwind-color-vars": "^0.1.3",
+    "tailwindcss": "^2.0.3",
+    "tailwindcss-children": "^2.1.0",
+    "tailwindcss-debug-screens": "^2.0.0",
+    "tailwindcss-scroll-snap": "^1.1.0",
+    "textlint": "^11.8.2",
+    "textlint-rule-common-misspellings": "^1.0.1",
+    "textlint-rule-max-comma": "^1.0.4",
+    "textlint-rule-no-dead-image-link": "^1.0.0",
+    "textlint-rule-no-todo": "^2.0.1",
+    "textlint-rule-rousseau": "^1.4.6",
+    "textlint-rule-sentence-length": "^2.2.0",
+    "textlint-rule-stop-words": "^2.0.9",
+    "uncss": "^0.17.3"
+  },
+  "dependencies": {},
+  "resolutions": {
+    "uglify-es": "npm:terser"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "> 0.4%",
+    "last 4 iOS major versions"
+  ]
+}

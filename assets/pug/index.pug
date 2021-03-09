@@ -1,0 +1,214 @@
+| {{ define "main" }}
+
+//- .text-center.text-sm.mb-6 A tiny index for the aavegotchi baazaar!
+
+.flex.justify-center.w-full.flex-col.mx-auto.h-1_2
+  
+  .flex.flex-col.w-full.text-center.-my-4
+    h1.uppercase.font-bold.text-2xl.mx-auto.mt-2 Baazaar Info
+    p#updated(data-build="{{ now.Unix }}").mx-auto.my-2 Last Update: ??
+    script.
+      let me = document.querySelector("#updated");
+      let atm = Date.now(); // current time in ms
+      let update_at = (me.dataset.build * 1000); // convert to ms
+      let diff = (atm - update_at) / 1000 / 60; // subtract for ms, convert to seconds, divde by 60
+      me.innerText = "Last Updated: " + diff.toFixed(0) + "m ago"
+      
+      /* document.querySelector("#updated").innerText = "Last Updated: " + ( (Date.now() - parseInt(document.querySelector("#updated").dataset.build * 100 )) /60/60).toFixed(0) + "m ago"  */
+  
+  
+  .flex.flex-col.w-full.mx-auto.h-1_2
+    
+    .flex.flex-col.md___flex-row.w-full.mx-auto.p-2
+      
+      a#template(href="/portals/closed/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-indigo-900.via-indigo-800.to-indigo-700
+        .flex.flex-row-reverse.justify-between
+
+          img(src="/aavegotchi_images/portal_sealed_optimized.svg", width=60, height=60, style=`
+          max-width: 60; 
+          max-height: 60;
+          height: 60px; 
+          object-fit: contain;
+          `)
+          .flex.flex-col.justify-around.ml-1
+            h3.font-semibold.uppercase.text-xl Closed Portals
+            //- div Owner
+            .flex.flex-row.justify-between.w-full
+              //- #haunt 👻 Haunt:
+              .flex
+                img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+                #price 
+
+      a#template(href="/portals/opened/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-purple-900.via-purple-800.to-purple-700
+        .flex.flex-row-reverse.justify-between
+          img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60, style=`
+          max-width: 60; 
+          max-height: 60;
+          height: 60px; 
+          object-fit: contain;
+          `)
+          .flex.flex-col.justify-around.ml-1
+            h3.font-semibold.uppercase.text-xl Opened Portals
+            //- div Owner
+            .flex.flex-row.justify-between.w-full
+              //- #haunt 👻 Haunt:
+              .flex
+                img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+                #price 
+
+      a#template(href="/wearables/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-green-700.via-green-600.to-green-500
+        .flex.flex-row-reverse.justify-between
+          img(src="/aavegotchi_images/wearables.svg", width=60, height=60, style=`
+          max-width: 60; 
+          max-height: 60;
+          height: 60px; 
+          object-fit: contain;
+          `)
+          .flex.flex-col.justify-around.ml-1
+            h3.font-semibold.uppercase.text-xl Wearables
+            //- div Owner
+            .flex.flex-row.justify-between.w-full
+              //- #haunt 👻 Haunt:
+              .flex
+                img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+                #price 
+
+      a#template(href="/consumables/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-pink-700.via-pink-600.to-pink-500
+        .flex.flex-row-reverse.justify-between
+          img(src="/aavegotchi_images/consumables.svg", width=60, height=60, style=`
+            max-width: 60; 
+            max-height: 60;
+            height: 60px; 
+            object-fit: contain;
+          `)
+          .flex.flex-col.justify-around.ml-1
+            h3.font-semibold.uppercase.text-xl Consumables
+            //- div Owner
+            .flex.flex-row.justify-between.w-full
+              //- #haunt 👻 Haunt:
+              .flex
+                img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+                #price 
+
+      //- @TODO: finish the aavegotchi section
+      //- a#template(href="/aavegotchis/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-purple-800.via-pink-800.via-pink-700.to-pink-600
+      //-   .flex.flex-row-reverse.justify-between
+      //-     img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60, style=`
+      //-     max-width: 60; 
+      //-     max-height: 60;
+      //-     height: 60px; 
+      //-     object-fit: contain;
+      //-     `)
+      //-     .flex.flex-col.justify-around.ml-1
+      //-       h3.font-semibold.uppercase.text-xl Aavegotchis
+      //-       //- div Owner
+      //-       .flex.flex-row.justify-between.w-full
+      //-         //- #haunt 👻 Haunt:
+      //-         .flex
+      //-           img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+      //-           #price 
+      
+      
+      
+    //-   a(href="/portals/closed/").bg-indigo-700.rounded.mx-auto.p-2.my-2.w-3_4.animate-pulse.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto.md___text-base Closed Portals
+    //-       .moji 🌌
+    //- 
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+    //- 
+    //-   a(href="/portals/closed/").bg-indigo-700.rounded.mx-auto.p-2.my-2.w-5_6.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto.md___text-base Closed Portals
+    //-       .moji 🌌
+    //- 
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+    //- 
+    //-     //- .flex.flex-row.justify-between
+    //-     //-   p.text-left Daily High: 
+    //-     //-   p#high.value.text-right ???
+    //-     //- .flex.flex-row.justify-between
+    //-     //-   p.text-left Daily Low: 
+    //-     //-   p#low.value.text-right ???
+    //- 
+    //-   a(href="/portals/opened/").bg-purple-800.rounded.mx-auto.p-2.my-2.w-3_4.animate-pulse.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto Open Portals
+    //-       .moji 🌀
+    //- 
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+    //- 
+    //- .flex.flex-col.md___flex-row.w-full.mx-auto.p-2
+    //-   a(href="/wearables/").bg-green-800.rounded.mx-auto.p-2.my-2.w-3_4.animate-pulse.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto Wearables
+    //-       .moji 🎩
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+    //- 
+    //- 
+    //-   a(href="/consumables/").bg-red-400.rounded.mx-auto.p-2.my-2.w-3_4.animate-pulse.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto Consumables
+    //-       .moji ⚗️ 
+    //- 
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+    //- 
+    //- .flex.flex-row.w-full.mx-auto.p-2
+    //-   a(href="/aavegotchis/").bg-pink-700.rounded.mx-auto.p-2.my-2.w-3_4.animate-pulse.px-0
+    //-     .flex.flex-row.justify-between.px-2
+    //-       .uppercase.font-semibold.text-md.text-left.my-auto Aavegotchis
+    //-       .moji 👾
+    //-     hr
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Listings: 
+    //-       p#listing.value.text-right ?
+    //-     .flex.flex-row.justify-between.px-2
+    //-       p.text-left Prices: 
+    //-       p#value.value.text-right ???
+
+  .flex.flex-col.w-full.text-center.my-4.mb-8
+    a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
+    .text-sm.mx-auto.w-full.select-none Donate to site 👻
+    .text-xs or
+    .text-sm.mx-auto.w-full.select-none Donate to frens 👻
+    a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
+    
+
+| {{ end }}
+
+//- .flex.justify-center.w-full.flex-col.mx-auto.h-1_2
+//- 
+//-   .flex.flex-col.w-full.text-center.-my-4
+//-     .text-sm.mx-auto.w-full.select-none Donate Here 👻:
+//-     .text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
+//- 

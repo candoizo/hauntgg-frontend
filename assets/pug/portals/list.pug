@@ -1,0 +1,19 @@
+| {{ define "main" }}
+
+p folder
+
+.archive
+  ul.list-with-title
+    | {{ range .Data.Pages.GroupByDate "2006" }}
+    .listing-title {{ .Key }}
+    | {{ range .Pages }}
+    ul.listing
+      a.listing-item(href='{{ .RelPermalink }}', title='{{ .Title }}')
+        .listing-post {{ .Title }}
+        .post-time
+          span.date {{ if isset .Site.Params "listdateformat" }} {{ .Date.Format .Site.Params.listDateFormat }} {{ else }} {{.Date.Format "Jan 2"}} {{ end }}
+          //- .listing-post
+          //-   a(href='{{ .Permalink }}', title='{{ .Title }}') {{ .Title }}
+    | {{ end }} {{ end }}
+
+| {{ end }}

@@ -1,0 +1,6 @@
+span.separator
+  |{{- range $index, $el := . -}}
+  a.category(
+    href!='{{ ( printf "categories/%s/" ( . | urlize ) ) | relLangURL }}'
+  ) {{ . }}
+  |{{- end -}}

@@ -1,0 +1,28 @@
+.pagination {
+  @apply mb-10;
+
+  ul {
+    @apply flex w-2_5 justify-around mx-auto;
+    @screen md {
+      @apply w-1_4;
+    }
+    @screen xl {
+      @apply w-1_5;
+    }
+
+
+    li {
+
+      &:first-child,&:last-child {
+        @apply hidden;
+      }
+
+      a {
+        @apply p-1;
+      }
+      &.disabled {
+        @apply hidden;
+      }
+    }
+  }
+}

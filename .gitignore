@@ -1,0 +1,15 @@
+.env
+public/
+faviconData.json
+.faviconData.json
+resources/
+node_modules/
+*.bak
+yarn.lock
+themes/
+test/
+assets/pug/**.html
+layouts/
+*.log
+hugo_stats.json
+node_modules/

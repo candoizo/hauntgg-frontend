@@ -1,0 +1,26 @@
+---
+  filters:
+  rules:
+    no-todo: true
+    common-misspellings: true
+    rousseau:
+      showLevels:
+        - suggestion
+        - warning
+        - error
+    sentence-length:
+      max: 100
+    max-comma: 4
+    stop-words:
+      defaultWords: true
+      skip:
+        - Blockquote
+      words:
+        - etc.
+        - you can
+      exclude:
+        - period of time
+    no-dead-image-link: true
+  experimental:
+    parallel: true
+    max-concurrency: 8

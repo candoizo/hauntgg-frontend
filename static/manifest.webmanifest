@@ -1,0 +1,27 @@
+{
+  "name": "candoizo's log: yet another blog",
+  "short_name": "candoizo's log",
+  "description": "yet another blog about development and security",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/?src=pwa",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#a10505"
+}

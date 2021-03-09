@@ -1,0 +1,36 @@
+# npx sematic-release -p semantic-release-gitmoji
+# repositoryUrl: ssh://git@gitlab.com/candoizo/modern-blog.git
+branches:
+  - release
+dryRun: false
+ci: false
+
+plugins:
+
+  -
+    - semantic-release-gitmoji
+    -
+      releaseRules:
+        major: [':boom:']
+        minor: [':sparkles:']
+        patch:
+          - ":bug:"
+          - ":ambulance:"
+          - ":lock:"
+
+  -
+    - "@semantic-release/git"
+    -
+      message: ":boomark: happy birthday ${nextRelease.version}"
+      assets:
+      - docker/*.yml
+      - package.json
+
+  -
+    - "@semantic-release/gitlab"
+    # - gitlabUrl: https://gitlab.com/candoizo/modern-blog.git
+    -
+      assets:
+      # I want this in gitlab, but doesnt work in ci atm
+      # - path: ./public/
+      #   label: html src

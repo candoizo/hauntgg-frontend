@@ -1,0 +1,73 @@
+baseURL: "http://localhost:1313"
+languageCode: "en-us"
+title: "haunt.gg"
+disableHugoGeneratorInject: true
+disableKinds:
+  - taxonomy
+  - term
+
+# holy this fixed gitllab allowing me to preview in job artifacts..!
+relativeURLs: true
+build:
+  writeStats: true
+summarylength: 8
+enableEmoji: true
+enableRobotsTXT: true
+pygmentsCodeFences: true
+pygmentsUseClasses: true
+
+imaging:
+  exif:
+    includeFields: ""
+
+markup:
+  goldmark:
+    parser:
+      autoHeadingID: false
+    renderer:
+      unsafe: true
+
+params:
+  customCSS:
+    # - css/syntax.css # hugo gen chromastyles --style=fruity > assets/css/custom.css
+    # - css/custom.css # scss/main.scss postcss tailwind
+  # title: "candoizo's log"
+  # author: "candoizo"
+  title: "haunt.gg"
+  desc: "tiny BRN aavegotchi tools!"
+  profilePicture: "profile.png"
+  disableThemeSwitcher: true
+  displayMode: "dark"
+  doNotLoadAnimations: true
+  indexdateformat: Mon. Jan 2, 2006
+
+menu:
+  main:
+    # - name: "🏠 /"
+    #   identifier: "home"
+    #   weight: 100
+    #   url: "/"
+    - name: "🌌 Closed Portals"
+      weight: 200
+      identifier: "closed_portals"
+      url: "/portals/closed/"
+    - name: "🌀 Open Portals"
+      weight: 300
+      identifier: "open_portals"
+      url: "/portals/opened/"
+    - name: "🎩 Wearables"
+      weight: 400
+      identifier: "wearables"
+      url: "/wearables/"
+    - name: "⚗️ Consumables"
+      weight: 500
+      identifier: "consumables"
+      url: "/consumables/"
+    - name: "👾 Aavegotchis"
+      weight: 600
+      identifier: "aavegotchis"
+      url: "/aavegotchis/"
+    # - name: "aavegotchi.com"
+    #   weight: 900
+    #   identifier: "repo"
+    #   url: "https://aavegotchi.com"

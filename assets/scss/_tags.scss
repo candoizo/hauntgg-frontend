@@ -1,0 +1,53 @@
+.tag {
+
+  @apply text-base leading-none mx-1;
+
+  &::before {
+    content: "#";
+    opacity: 0.5;
+  }
+
+}
+
+// prob dont need
+.category {
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1;
+  margin: 5px 8px 5px 0;
+
+  padding: 4px 6px;
+  border-radius: 3px;
+  color: var(--tag-color) !important;
+  background-color: var(--secondary-bg-color);
+  border: 1px solid var(--border-color);
+}
+
+.post .post-footer .tags {
+  padding-bottom: 15px;
+  font-size: 13px;
+}
+
+.post .post-footer .tags ul {
+  list-style-type: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.post .post-footer .tags ul li {
+  list-style-type: none;
+  margin: 0;
+  padding-right: 5px;
+  display: inline;
+}
+
+.post .post-footer .tags a {
+  text-decoration: none;
+  color: var(--post-color);
+  font-weight: 400;
+}
+
+.post .post-footer .tags a:hover {
+  text-decoration: none;
+}

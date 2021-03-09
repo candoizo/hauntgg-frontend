@@ -1,0 +1,51 @@
+variables:
+  RELEASE_IMAGE_TEST: server:${CI_COMMIT_SHORT_SHA}
+  RELEASE_IMAGE: server:prod # because gitlab randomly breaks?!?!?
+  NODE_ENV: $CI_COMMIT_REF_NAME
+
+.job_template: &job_default
+  image: registry.gitlab.com/candoizo/modern-blog/build:rolling
+  interruptible: true
+  before_script:
+    - ln -s /cache/node_modules ./node_modules
+  script:
+    - mkdir -p static
+    - yarn run gulp build
+  artifacts:
+    paths:
+      - public/
+
+dev:
+  <<: *job_default
+  stage: build
+  # variables:
+    # NODE_ENV: dev
+  when: manual
+  only:
+    - dev
+    - preview
+
+prod:
+  <<: *job_default
+  stage: build
+  # variables:
+    # NODE_ENV: prod
+  only:
+    - preview
+
+pages:
+  <<: *job_default
+  when: manual
+  stage: deploy
+  image: registry.gitlab.com/candoizo/modern-blog/$RELEASE_IMAGE
+  variables:
+    # NODE_ENV: $CI_COMMIT_REF_NAME
+    GL_TOKEN: $CI_JOB_TOKEN
+    RELEASE_IMAGE: build:rolling # enable when gitlab / hugo isnt broken
+  only:
+    - release
+  script:
+    - mkdir -p static
+    - "[[ $RELEASE_IMAGE = build:rolling ]] && yarn run gulp build || cp -R /public ." # only build:rolling has yarn + deps
+  # after_script:
+  #   - yarn run semantic-release

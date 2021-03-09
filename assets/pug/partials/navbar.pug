@@ -1,0 +1,39 @@
+nav
+
+  .flex.mx-auto.w-full.md__w-5_6
+    .flex.h-14.w-full
+      
+      a.mx-4.my-auto(href='/')
+        | {{ $image := resources.Get "aavegotchi.gif" }}
+        | {{ $smallimg := $image.Resize "160x"}}
+        img.brand.icon.rounded(src='{{ $smallimg.RelPermalink }}', alt='profile picture')
+        
+        a.flex.flex-col.my-auto(href="/").no-underline
+          .font-semibold {{ .Site.Params.title }}
+          .font-normal.text-xs {{ .Site.Params.desc }}
+
+    a.navbar-burger(role='button', data-target='navMenu', aria-label='menu', aria-expanded='false', onclick!=`
+      let arg1 = document.querySelector('#navMenu'), c = 'hidden';
+      arg1.classList.contains(c) ? arg1.classList.remove(c) : arg1.classList.add(c);
+    `)
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+
+  ul.nav.my-auto.ml-auto.w-1_3.justify-around.hidden#navMenu
+    
+    | {{ $url := .RelPermalink }} {{ range .Site.Menus.main }} {{ $active := eq $url .URL }}
+    a( href="{{ .URL }}" title="{{ .Title }}") 
+      li {{ .Name }}
+    | {{ end }}
+    
+    | {{ if .Site.IsMultiLingual }}{{ range $.Site.Home.AllTranslations }}
+    li
+      a(href='{{ .Permalink }}', title='{{ .Language.LanguageName }}') {{ .Language.LanguageName }}
+    | {{ end }}{{ end }}
+    
+    | {{ if not .Site.Params.disableThemeSwitcher }}
+    li.theme-switch-item
+      a.theme-switch(title='Switch Theme')
+        i.fas.fa-adjust.fa-fw(aria-hidden='true')
+    | {{end}}

@@ -1,0 +1,8 @@
+node_modules/
+layouts/
+public/
+resources/
+*.bak
+.*ignore
+yarn*
+.gitlab-ci.yml

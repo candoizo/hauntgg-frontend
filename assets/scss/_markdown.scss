@@ -1,0 +1,193 @@
+.markdown {
+  @apply pb-10;
+
+  // .post-title {
+  header {
+    @apply text-center;
+
+    h3 {
+      @apply text-2xl font-semibold;
+    }
+
+    .info {
+      @apply select-none;
+    }
+
+  }
+
+  article {
+    @apply mx-auto;
+
+    @screen md {
+      @apply w-5_6;
+    }
+
+  }
+
+  p {
+    svg.canon {
+      // not sure but i know this svg canon thing appears sometimes
+      @apply w-full;
+    }
+  }
+
+  img {
+    @apply mx-auto;
+  }
+
+  a.footnote-ref {
+    // margin: 0.4em;
+    @apply p-2;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-4 mb-1;
+  }
+
+  code {
+    @apply text-sm;
+  }
+
+  blockquote {
+    @apply mx-auto ml-1;
+    padding: 0 1em;
+    border-left: 0.25em solid var(--blockquote-border-color);
+    color: var(--blockquote-text-color);
+  }
+
+  table {
+    border-spacing: 0;
+    @apply table-fixed w-full mb-4 border-separate rounded mx-auto;
+
+    @screen md {
+      @apply w-5_6;
+    }
+
+    td {
+      a,
+      strong {
+        @apply p-0 m-0;
+      }
+    }
+
+    th {
+      @apply border-b;
+      padding: 0.25rem 0.2rem;
+    }
+
+    tbody {
+      @apply rounded;
+
+      tr {
+        &:last-child {
+          @apply rounded-b;
+        }
+
+        &:nth-child(odd) {
+          @apply bg-red-700;
+        }
+
+        &:nth-child(even) {
+          @apply bg-red-800;
+        }
+      }
+    }
+  }
+
+  .highlight + .highlight,
+  .highlight + p,
+  p + .highlight,
+  p + p {
+    @apply mt-1;
+  }
+
+  ol,
+  ul {
+    @apply w-5_6 mx-auto;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold border-b border-gray-50 border-dashed border-opacity-75;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  h6 {
+    @apply text-base font-semibold;
+  }
+
+  p {
+    hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    @apply text-base leading-relaxed font-normal;
+    white-space: pre-wrap;
+  }
+
+  p code:not(pre) {
+    @apply border rounded border-gray-700;
+    padding: 0.05em 0.1em;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow-wrap: normal;
+  }
+
+  // rounded code blocks
+  .highlight pre.chroma,
+  pre {
+    @apply rounded border;
+    border-left-color: var(--red-500);
+  }
+
+  // dont think this is used anywhere and can be deleted
+  pre {
+    background-color: var(--pre-bg-color);
+    padding: 5px;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .chroma {
+    @apply bg-gray-900;
+  }
+
+  a {
+    @apply font-semibold;
+  }
+}
+
+.footnotes {
+  @apply mt-4;
+
+  ol,
+  p {
+    @apply text-sm;
+  }
+}

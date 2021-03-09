@@ -1,0 +1,19 @@
+.sidebar
+  .logo-title
+    .title
+      img(src='{{ .Site.Params.profilePicture | absURL }}', alt='profile picture')
+      h3
+        a(href='/') {{ .Site.Params.Title }}
+      .description
+        p {{ .Site.Params.description }}
+  ul.social-links
+    | {{ range $item := .Site.Params.socialIcons }}
+
+    li
+      a(href='{{ $item.url }}', rel='me', aria-label='{{ $item.title }}')
+        i.fa-2x(class="{{ $item.icon }}", aria-hidden='true')
+
+    | {{ end }}
+
+  //- .footer
+  //- 	.by_farbox © {{ .Site.Params.author }} {{ if isset .Site.Params "copyright" }} {{ .Site.Params.copyright }} {{ else }} {{ now.Format "2006"}} {{end}}
