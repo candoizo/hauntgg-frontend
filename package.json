@@ -1,5 +1,5 @@
 {
-  "name": "gotchi-index",
+  "name": "haunt.gg",
   "scripts": {
     "gulp": "gulp --cwd . -f assets/gulpfile.js",
     "docker": "[[ $NODE_ENV == release ]] && echo '\n  [!] NODE_ENV=release'; cd docker && docker-compose",
