@@ -5,5 +5,3 @@ type: portals/closed
 tags:
 - index
 ---
-
-# Closed Portals

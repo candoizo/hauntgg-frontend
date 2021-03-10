@@ -5,5 +5,3 @@ author: candoizo
 tags:
 - index
 ---
-
-abc

@@ -1,7 +1,7 @@
 {
   "name": "candoizo's log: yet another blog",
-  "short_name": "candoizo's log",
-  "description": "yet another blog about development and security",
+  "short_name": "haunt.gg",
+  "description": "tools for aavegotchi frens",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -23,5 +23,5 @@
   "start_url": "/?src=pwa",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#a10505"
+  "theme_color": "#be480e"
 }
