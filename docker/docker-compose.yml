@@ -6,7 +6,7 @@ services:
     build:
       context: ..
       dockerfile: ./docker/build.Dockerfile
-    image: registry.gitlab.com/candoizo/modern-blog/build:rolling
+    image: registry.gitlab.com/hauntgg/hauntgg-frontend/build:rolling
 
   server:
     build:
@@ -14,7 +14,7 @@ services:
       dockerfile: ./docker/server.Dockerfile
       args:
         NODE_ENV: $NODE_ENV
-    image: registry.gitlab.com/candoizo/modern-blog/server:$NODE_ENV
+    image: registry.gitlab.com/hauntgg/hauntgg-frontend/server:$NODE_ENV
     ports:
       - 1313:1313/tcp
     environment:

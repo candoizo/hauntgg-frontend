@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.0-experimental
-FROM registry.gitlab.com/candoizo/modern-blog/build:rolling as gen
+FROM registry.gitlab.com/hauntgg/hauntgg-frontend/build:rolling as gen
 COPY . .
 ARG NODE_ENV
 # basically once i removed all the old files from here it disappeared in git

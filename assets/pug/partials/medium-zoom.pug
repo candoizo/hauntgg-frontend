@@ -1,6 +1,2 @@
 | {{ $js := resources.Get "js/ext/medium-zoom.js" }} {{ $secureJS := $js | resources.Minify | resources.Fingerprint }}
 script(type='text/javascript', src='{{ $secureJS.RelPermalink }}' async, defer)
-
-
-| {{ $ojs := resources.Get "js/home.js" }} {{ $secureJS := $ojs | resources.Minify | resources.Fingerprint }}
-script(type='text/javascript', src='{{ $secureJS.RelPermalink }}' async, defer)

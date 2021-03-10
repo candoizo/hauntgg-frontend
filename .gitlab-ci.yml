@@ -4,7 +4,7 @@ variables:
   NODE_ENV: $CI_COMMIT_REF_NAME
 
 .job_template: &job_default
-  image: registry.gitlab.com/candoizo/modern-blog/build:rolling
+  image: registry.gitlab.com/hauntgg/hauntgg-frontend/build:rolling
   interruptible: true
   before_script:
     - ln -s /cache/node_modules ./node_modules
@@ -37,7 +37,7 @@ pages:
   <<: *job_default
   when: manual
   stage: deploy
-  image: registry.gitlab.com/candoizo/modern-blog/$RELEASE_IMAGE
+  image: registry.gitlab.com/hauntgg/hauntgg-frontend/$RELEASE_IMAGE
   variables:
     # NODE_ENV: $CI_COMMIT_REF_NAME
     GL_TOKEN: $CI_JOB_TOKEN

@@ -1,0 +1,62 @@
+// top title + last_updated section
+.pagehead {
+  @apply flex flex-col w-full text-center -my-4;
+
+  h1 {
+    @apply font-bold text-2xl mx-auto mt-2 uppercase
+  }
+}
+
+// contains sort prompt
+.sortbox {
+
+  @apply flex mx-auto w-full justify-center mt-4;
+
+  p {
+    @apply uppercase mx-2 my-auto;
+  }
+
+  select {
+    @apply rounded border appearance-none border-pink-300 py-1 pl-3 pr-3 bg-transparent uppercase text-center;
+
+    &:focus {
+      // @apply outline-none
+    }
+
+  }
+
+}
+
+// contains an array of nodes, could be item listings or portals , or sections of subrarities
+.itemlist {
+  @apply flex flex-col mx-auto w-11_12;
+
+  @screen md {
+    @apply w-9_12;
+  }
+
+  @screen lg {
+    @apply w-4_5;
+  }
+
+  @screen xl {
+    @apply w-3_4;
+  }
+}
+
+a.itemcard {
+
+  @apply flex flex-col mx-auto w-full my-2 rounded p-2;
+
+  // &#template {
+  //   @apply hidden;
+  // }
+
+  &.opened {
+    @apply bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700;
+  }
+
+  &.closed {
+    @apply bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-700;
+  }
+}

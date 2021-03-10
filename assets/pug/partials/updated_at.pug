@@ -1,0 +1,7 @@
+p#updated(data-build="{{ now.Unix }}").mx-auto.my-2 Last Update: ??
+script.
+  let me = document.querySelector("#updated");
+  let atm = Date.now(); // current time in ms
+  let update_at = (me.dataset.build * 1000); // convert to ms
+  let diff = (atm - update_at) / 1000 / 60; // subtract for ms, convert to seconds, divde by 60
+  me.innerText = "Last Updated: " + diff.toFixed(0) + "m ago"

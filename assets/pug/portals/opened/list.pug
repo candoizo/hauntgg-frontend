@@ -1,36 +1,35 @@
 | {{ define "main" }}
 
-//- p.mb-4 folder closed
+.pagehead
+  h1 {{ .Title }}
+  | {{ partial "updated_at.html" . }}
 
-h1.mx-auto.text-2xl.font-semibold.text-center.uppercase.my-2 {{ .Title }}
-
-.flex.mx-auto.w-full.justify-center
-  p.uppercase.mx-2.my-auto Sort by
-  //- select.mb-1#sort(name="sort")
-  //-   option Portal #
-  //-   option Price
-
-  select#sort.rounded.border.appearance-none.border-gray-300.py-2.focus___outline-none.focus___ring-2.focus___ring-indigo-200.focus___border-indigo-500.text-base.pl-3.pr-10.bg-transparent
+.sortbox
+  p Sort by
+  select(onchange="resort()")
     option Portal #
     option Price
 
-//- select options: index, price
+//- .flex.flex-col.mx-auto.w-11_12#list
+.itemlist#list
 
-.flex.flex-col.mx-auto.w-11_12#list
+  //- closed portal item
+  //- a#template.rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.hidden.bg-gradient-to-r.from-indigo-900.via-indigo-800.to-indigo-700
+  a.hidden.itemcard.opened#template
+    
+    .flex.justify-between
 
-  a#template(href="").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.hidden.bg-gradient-to-r.from-indigo-900.via-indigo-800.to-indigo-700
-    .flex.flex-row-reverse.justify-between
-
-      img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60)
       .flex.flex-col.justify-around.ml-1
         h3.font-semibold.uppercase.text-xl Portal Title
         //- div Owner
         .flex.flex-row.flex-row-reverse.justify-between.w-full
-          #haunt 👻 Haunt:
+          #haunt 👻 Haunt
           .flex
             img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
             #price
 
+      img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60)
+      
 | {{ $js := resources.Get "js/opened.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
 script(src="{{$secJs.RelPermalink}}")
 

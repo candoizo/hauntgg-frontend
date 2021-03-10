@@ -1,21 +1,22 @@
 | {{ define "main" }}
 
-//- .text-center.text-sm.mb-6 A tiny index for the aavegotchi baazaar!
-
 .flex.justify-center.w-full.flex-col.mx-auto.h-1_2
   
-  .flex.flex-col.w-full.text-center.-my-4
-    h1.uppercase.font-bold.text-2xl.mx-auto.mt-2 Baazaar Info
-    p#updated(data-build="{{ now.Unix }}").mx-auto.my-2 Last Update: ??
-    script.
-      let me = document.querySelector("#updated");
-      let atm = Date.now(); // current time in ms
-      let update_at = (me.dataset.build * 1000); // convert to ms
-      let diff = (atm - update_at) / 1000 / 60; // subtract for ms, convert to seconds, divde by 60
-      me.innerText = "Last Updated: " + diff.toFixed(0) + "m ago"
-      
-      /* document.querySelector("#updated").innerText = "Last Updated: " + ( (Date.now() - parseInt(document.querySelector("#updated").dataset.build * 100 )) /60/60).toFixed(0) + "m ago"  */
-  
+  //- .flex.flex-col.w-full.text-center.-my-4
+    
+  | {{ $ojs := resources.Get "js/home.js" }} {{ $secureJS := $ojs | resources.Minify | resources.Fingerprint }}
+  script(type='text/javascript', src='{{ $secureJS.RelPermalink }}' async, defer)
+
+  .pagehead
+    h1 Baazaar Info
+    | {{ partial "updated_at.html" . }}
+    //- p#updated(data-build="{{ now.Unix }}").mx-auto.my-2 Last Update: ??
+    //- script.
+    //-   let me = document.querySelector("#updated");
+    //-   let atm = Date.now(); // current time in ms
+    //-   let update_at = (me.dataset.build * 1000); // convert to ms
+    //-   let diff = (atm - update_at) / 1000 / 60; // subtract for ms, convert to seconds, divde by 60
+    //-   me.innerText = "Last Updated: " + diff.toFixed(0) + "m ago"
   
   .flex.flex-col.w-full.mx-auto.h-1_2
     
@@ -196,13 +197,13 @@
     //-       p.text-left Prices: 
     //-       p#value.value.text-right ???
 
-  .flex.flex-col.w-full.text-center.my-4.mb-8
-    a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-    .text-sm.mx-auto.w-full.select-none Donate to site 👻
-    .text-xs or
-    .text-sm.mx-auto.w-full.select-none Donate to frens 👻
-    a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-    
+  //- .flex.flex-col.w-full.text-center.my-4.mb-8
+  //-   a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
+  //-   .text-sm.mx-auto.w-full.select-none Donate to site 👻
+  //-   .text-xs or
+  //-   .text-sm.mx-auto.w-full.select-none Donate to frens 👻
+  //-   a(href="https://explorer-mainnet.maticvigil.com/address/0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF/tokens", rel="noopener noreferrer nofollow").text-xs.mx-auto 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
+  //- 
 
 | {{ end }}
 
