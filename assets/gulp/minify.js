@@ -16,7 +16,7 @@ gulp.task('uglify', () =>
       warnings: true,
       // safari10: true,
       mangle: {
-        toplevel: true
+        toplevel: false
       }
     }),
     gulp.dest('public/')
