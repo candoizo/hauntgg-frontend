@@ -44,7 +44,7 @@ gulp.task('generate-favicon', function (done) {
         pictureAspect: 'noChange',
         themeColor: '#a10505',
         manifest: {
-          name: "candoizo's log",
+          name: "haunt.gg",
           display: 'standalone',
           orientation: 'notSet',
           onConflict: 'override',

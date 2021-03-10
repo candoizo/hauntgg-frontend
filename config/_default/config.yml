@@ -34,7 +34,7 @@ params:
   # title: "candoizo's log"
   # author: "candoizo"
   title: "haunt.gg"
-  desc: "v0.1.0 waatching the baazaar!"
+  desc: "waatching the baazaar!"
   profilePicture: "profile.png"
   disableThemeSwitcher: true
   displayMode: "dark"

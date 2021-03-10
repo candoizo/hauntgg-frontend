@@ -9,15 +9,18 @@ gulp.task('uglify', () =>
     uglify({
       ecma: "2017",
       compress: {
-        passes: 3,
-        drop_console: true
+        passes: 1,
+        drop_console: true,
+        keep_fnames: true
       },
       toplevel: false,
       warnings: true,
       // safari10: true,
       mangle: {
-        toplevel: false
-      }
+        toplevel: false,
+        keep_fnames: true,
+      },
+      keep_fnames: true
     }),
     gulp.dest('public/')
   )
