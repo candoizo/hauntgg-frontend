@@ -5,4 +5,3 @@ author: candoizo
 tags:
 - index
 ---
-def

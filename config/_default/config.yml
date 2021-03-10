@@ -63,10 +63,11 @@ menu:
       weight: 500
       identifier: "consumables"
       url: "/consumables/"
-    - name: "👾 Aavegotchis"
-      weight: 600
-      identifier: "aavegotchis"
-      url: "/aavegotchis/"
+    # - name: "👾 Aavegotchis"
+    #   weight: 600
+    #   identifier: "aavegotchis"
+    #   url: "/aavegotchis/"
+
     # - name: "aavegotchi.com"
     #   weight: 900
     #   identifier: "repo"

@@ -1,21 +1,21 @@
 <div align=center>
 
-# 📖 modern-blog
+# 👻 haunt.gg
 
 <small>
 
-*a really awesome blog!*
+*a really awesome aavegotchi site!*
 
 </small>
 
-**live at [candoizo's log](https://log.ndoizo.ca)**
+**live at [haunt.gg](https://haunt.gg)**
 
 </div>
 
 ## tldr quickdeploy
 
 ```bash
-git clone https://gitlab.com/candoizo/modern-blog
+git clone https://gitlab.com/hauntgg/hauntgg-frontend
 git checkout release
 export NODE_ENV=$(git rev-parse --abbrev-ref HEAD)
 yarn run docker build rolling server
