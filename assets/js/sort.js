@@ -1,4 +1,4 @@
-let resort = () => {
+const resort = () => {
 
   let list = document.querySelector("#list");
   let d = document.querySelector("select#sort").selectedIndex;
@@ -14,7 +14,7 @@ let resort = () => {
   .forEach(node=>list.appendChild(node));
 }
 
-let crap_filter = () => {
+const crap_filter = () => {
   let list = document.querySelector("#list");
   let d = document.querySelector("select#filter").selectedIndex;
 

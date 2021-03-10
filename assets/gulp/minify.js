@@ -12,7 +12,7 @@ gulp.task('uglify', () =>
         passes: 3,
         drop_console: true
       },
-      toplevel: true,
+      toplevel: false,
       warnings: true,
       // safari10: true,
       mangle: {
