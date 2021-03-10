@@ -14,17 +14,20 @@ module.exports = {
     ...process.env.NODE_ENV === 'release' ? [
       uncss({
         html: [
-          // 'public/*.html',
-          // 'public/post/index.html',
-          // 'public/post/markdown-syntax/index.html'
-          //'./layouts/**/*.html',
-          // './layouts/404.html',
-          // './layouts/_default/*.html',
-          // './layouts/partials/*.html'
-          //'./test/**/*.html',
-          './test/*.html',
-          './test/post/index.html',
-          './test/post/markdown-syntax/index.html',
+          // '../public/**.html',
+        //   // 'public/post/index.html',
+        //   // 'public/post/markdown-syntax/index.html'
+        //   //'./layouts/**/*.html',
+          './layouts/404.html',
+          './layouts/portals/closed/index.html',
+          './layouts/portals/opened/index.html',
+          './layouts/index.html',
+        //   // './layouts/_default/*.html',
+        //   // './layouts/partials/*.html'
+          // './test/index.html',
+        //   '../test/*.html',
+        //   '../test/portals/**/index.html',
+        //   // './test/post/markdown-syntax/index.html',
         ],
         report: true,
         htmlroot: "./test/",
@@ -42,8 +45,8 @@ module.exports = {
           // ...hugo_html_elements.ids.map((e) => '#' + e),
           // hugo_html_elements.classes,
           // hugo_html_elements.ids
-          /.+chroma+/g,
-          /.+medium-zoom+/g,
+          // /.+chroma+/g,
+          // /.+medium-zoom+/g,
           // /.+markdown+/g,
           // /.+pagination+/g,
           // /.+tag+/g,
