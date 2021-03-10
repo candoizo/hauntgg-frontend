@@ -25,6 +25,7 @@ module.exports = {
           './test/portals/closed/index.html',
           './test/portals/opened/index.html',
           './test/wearables/index.html',
+          './test/consumables/index.html',
           './test/index.html',
         //   // './layouts/_default/*.html',
         //   // './layouts/partials/*.html'
