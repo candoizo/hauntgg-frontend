@@ -7,21 +7,24 @@ const css_declaration_sorter = require('css-declaration-sorter');
 const autoprefixer = require('autoprefixer'); // @TODO: test if preset_env does this automatically
 // const hugo_html_elements = require('../hugo_stats').htmlElements;
 // let items = [].concat([], ...Object.values(hugo_html_elements));
+
+require("debug")("*")(process.env);
+
 module.exports = {
   plugins: [
     postcss_preset_env,
     tailwindcss,
-    ...process.env.NODE_ENV === 'release' ? [
+    ...process.env.HUGO_ENVIRONMENT === 'release' ? [
       uncss({
         html: [
           // '../public/**.html',
         //   // 'public/post/index.html',
         //   // 'public/post/markdown-syntax/index.html'
         //   //'./layouts/**/*.html',
-          './layouts/404.html',
-          './layouts/portals/closed/index.html',
-          './layouts/portals/opened/index.html',
-          './layouts/index.html',
+          './test/404.html',
+          './test/portals/closed/index.html',
+          './test/portals/opened/index.html',
+          './test/index.html',
         //   // './layouts/_default/*.html',
         //   // './layouts/partials/*.html'
           // './test/index.html',
