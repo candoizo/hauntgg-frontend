@@ -1,7 +1,8 @@
 let format_latest = async (data_url, text_sel) =>
   fetch(data_url)
-  .then(res => res.json()).then(dict => {
-    document.querySelector(text_sel + " #price").innerText = format_range(dict);
+  .then(res => res.json()).then(res =>  {
+    let json = res;
+    document.querySelector(text_sel + " #price").innerText = format_range(json);
   });
 
 (async () => {

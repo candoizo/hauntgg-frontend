@@ -1,9 +1,79 @@
 | {{ define "main" }}
 
-section.e404
-	h1 Coming Soon, hopefully.
-	h2 {{ i18n "page_not_found" }}
-	p {{ i18n "page_does_not_exist" }}
-	p {{ i18n "head_back" "/" | safeHTML }}
+.pagehead
+  h1 {{ .Title }}
+  | {{ partial "updated_at.html" . }}
+
+.sortbox
+  p Sort by
+  select#sort(onchange="resort()")
+    option Price
+  p Filter by
+  select#filter(onchange="rarity_filter()")
+    option(value="all") All
+    option(value="Common") Common
+    option(value="Uncommon") Uncommon
+    option(value="Rare") Rare
+    option(value="Legendary") Legendary
+    option(value="Mythical") Mythical
+    option(value="Godlike") Godlike
+
+//- potentially add a search box
+
+.itemlist#list
+
+  |  {{$data := getJSON "static/datadir/wearables/latest.json"}}
+  |  {{ range $data.items }}
+  a.itemcard.wearables.flex-reverse.justify-between(
+    href="{{.href}}", 
+    target="_blank", 
+    data-price="{{.price}}", 
+    data-index="{{.index}}",
+		data-rarity="{{.rarity}}",
+  )
+
+    | {{ $src := "/aavegotchi_images/items/consumables/kinship.svg" }}
+    | {{ if strings.HasSuffix .imgurl "svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/kinship.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "128.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/xp.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "127.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/greater_kinship.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "129.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/greater_xp.svg" }}
+    | {{ end }}
+
+
+    img.mainimg(src="{{ $src }}", width=60, height=60)
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3.font-semibold.uppercase.text-xl {{.name}}
+
+      .flex.flex-row.w-full
+
+        .mr-2#haunt ✨{{.rarity}}
+
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
+          #price.
+            {{ if gt .price 9999 }}
+
+            {{ $a := div .price 1000 }}
+            {{ $b := math.Round $a  }}
+            {{ $c := mul $a 100  }}
+            {{ $d := math.Round $c  }}
+            {{div $d 100}}K
+
+            {{ else }}
+            {{.price}}
+            {{ end }}
+
+  |  {{ end }}
+
+| {{ partial "sort_js.html" . }}
 
 | {{ end }}

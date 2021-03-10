@@ -8,7 +8,7 @@ const autoprefixer = require('autoprefixer'); // @TODO: test if preset_env does 
 // const hugo_html_elements = require('../hugo_stats').htmlElements;
 // let items = [].concat([], ...Object.values(hugo_html_elements));
 
-require("debug")("*")(process.env);
+// require("debug")("*")(process.env);
 
 module.exports = {
   plugins: [
@@ -24,6 +24,7 @@ module.exports = {
           './test/404.html',
           './test/portals/closed/index.html',
           './test/portals/opened/index.html',
+          './test/wearables/index.html',
           './test/index.html',
         //   // './layouts/_default/*.html',
         //   // './layouts/partials/*.html'

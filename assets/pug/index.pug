@@ -4,8 +4,8 @@
   
   //- .flex.flex-col.w-full.text-center.-my-4
     
-  | {{ $ojs := resources.Get "js/home.js" }} {{ $secureJS := $ojs | resources.Minify | resources.Fingerprint }}
-  script(type='text/javascript', src='{{ $secureJS.RelPermalink }}' async, defer)
+  //- | {{ $ojs := resources.Get "js/home.js" }} {{ $secureJS := $ojs | resources.Minify | resources.Fingerprint }}
+  //- script(type='text/javascript', src='{{ $secureJS.RelPermalink }}' async, defer)
 
   .pagehead
     h1 Baazaar Info
@@ -38,7 +38,24 @@
               //- #haunt 👻 Haunt:
               .flex
                 img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
-                #price 
+                #price.
+                  {{$data := getJSON "static/datadir/portals/closed/latest.json"}}
+                  {{ $min := $data.min_price }}
+                  {{ $max := $data.max_price }}
+                  
+                  {{ if gt $max 9999 }}
+                  
+                  {{ $a := div $max 1000 }}
+                  {{ $b := math.Round $a  }}
+                  {{ $c := mul $a 100  }}
+                  {{ $d := math.Round $c  }}
+                  {{ $min }} - {{div $d 100}}K
+                  
+                  {{ else }}
+                  
+                  {{ $min }} - {{ $max }}
+                  
+                  {{ end }}
 
       a#template(href="/portals/opened/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-purple-900.via-purple-800.to-purple-700
         .flex.flex-row-reverse.justify-between
@@ -55,7 +72,26 @@
               //- #haunt 👻 Haunt:
               .flex
                 img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
-                #price 
+                #price.
+                  {{$data := getJSON "static/datadir/portals/opened/latest.json"}}
+                  
+                  {{ $min := $data.min_price }}
+                  {{ $max := $data.max_price }}
+                  
+                  {{ if gt $max 9999 }}
+                  
+                  {{ $a := div $max 1000 }}
+                  {{ $b := math.Round $a  }}
+                  {{ $c := mul $a 100  }}
+                  {{ $d := math.Round $c  }}
+                  {{ $min }} - {{div $d 100}}K
+                  
+                  {{ else }}
+                  
+                  {{ $min }} - {{ $max }}
+                  
+                  {{ end }}
+                  
 
       a#template(href="/wearables/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-green-700.via-green-600.to-green-500
         .flex.flex-row-reverse.justify-between
@@ -72,7 +108,24 @@
               //- #haunt 👻 Haunt:
               .flex
                 img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
-                #price 
+                #price.
+                  {{$data := getJSON "static/datadir/wearables/latest.json"}}
+                  {{ $min := $data.min_price }}
+                  {{ $max := $data.max_price }}
+                  
+                  {{ if gt $max 9999 }}
+                  
+                  {{ $a := div $max 1000 }}
+                  {{ $b := math.Round $a  }}
+                  {{ $c := mul $a 100  }}
+                  {{ $d := math.Round $c  }}
+                  {{ $min }} - {{div $d 100}}K
+                  
+                  {{ else }}
+                  
+                  {{ $min }} - {{ $max }}
+                  
+                  {{ end }}
 
       a#template(href="/consumables/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-pink-700.via-pink-600.to-pink-500
         .flex.flex-row-reverse.justify-between
@@ -89,7 +142,24 @@
               //- #haunt 👻 Haunt:
               .flex
                 img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
-                #price 
+                #price.
+                  {{$data := getJSON "static/datadir/consumables/latest.json"}}
+                  {{ $min := $data.min_price }}
+                  {{ $max := $data.max_price }}
+                  
+                  {{ if gt $max 9999 }}
+                  
+                  {{ $a := div $max 1000 }}
+                  {{ $b := math.Round $a  }}
+                  {{ $c := mul $a 100  }}
+                  {{ $d := math.Round $c  }}
+                  {{ $min }} - {{div $d 100}}K
+                  
+                  {{ else }}
+                  
+                  {{ $min }} - {{ $max }}
+                  
+                  {{ end }}
 
       //- @TODO: finish the aavegotchi section
       //- a#template(href="/aavegotchis/").rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.bg-gradient-to-r.from-purple-800.via-pink-800.via-pink-700.to-pink-600

@@ -1,0 +1,2 @@
+| {{ $js := resources.Get "js/sort.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
+script(src="{{$secJs.RelPermalink}}")

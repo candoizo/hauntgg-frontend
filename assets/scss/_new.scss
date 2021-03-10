@@ -19,6 +19,9 @@
   select {
     @apply rounded border appearance-none border-pink-300 py-1 pl-3 pr-3 bg-transparent uppercase text-center;
 
+    // supposed to center the selected text
+    text-align-last: center;
+
     &:focus {
       // @apply outline-none
     }
@@ -29,7 +32,7 @@
 
 // contains an array of nodes, could be item listings or portals , or sections of subrarities
 .itemlist {
-  @apply flex flex-col mx-auto w-11_12;
+  @apply flex flex-col mx-auto w-11_12 mb-12;
 
   @screen md {
     @apply w-9_12;
@@ -46,11 +49,11 @@
 
 a.itemcard {
 
-  @apply flex flex-col mx-auto w-full my-2 rounded p-2;
+  @apply flex flex-row-reverse mx-auto w-full my-2 rounded p-2;
 
-  // &#template {
-  //   @apply hidden;
-  // }
+  &.hide {
+    @apply hidden;
+  }
 
   &.opened {
     @apply bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700;
@@ -59,4 +62,31 @@ a.itemcard {
   &.closed {
     @apply bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-700;
   }
+
+  &.wearables {
+    @apply bg-gradient-to-r from-green-900 via-green-800 to-green-700;
+  }
+
+  &.consumables {
+    @apply bg-gradient-to-r from-pink-800 via-pink-700 to-pink-600;
+  }
+
+  // the main visual accent
+  img.mainimg {
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  // tiny images like ghst token, aave ghost, usuall has text beside
+  img.sprite {
+    @apply m-auto mr-1;
+    // padding-right: .15rem;
+    height: 20px;
+    width: 20px;
+    max-width: 20px;
+    max-height: 20px;
+  }
+
 }
