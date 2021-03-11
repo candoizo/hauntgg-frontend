@@ -12,7 +12,7 @@
 
 .itemlist#list
 
-  |  {{$closed := getJSON "static/datadir/portals/closed/latest.json"}}
+  |  {{$closed := getJSON "data/portals/closed/latest.json"}}
   |  {{ range $closed.items }}
   a.itemcard.closed.flex-reverse.justify-between(
     href="{{.href}}", 

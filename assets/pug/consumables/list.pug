@@ -16,7 +16,7 @@
 
 .itemlist#list
 
-  |  {{$data := getJSON "static/datadir/consumables/latest.json"}}
+  |  {{$data := getJSON "data/consumables/latest.json"}}
   |  {{ range $data.items }}
   a.itemcard.consumables.flex-reverse.justify-between(
     href="{{.href}}", 

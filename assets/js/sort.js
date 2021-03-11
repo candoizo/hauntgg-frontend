@@ -45,7 +45,7 @@ const crap_filter = () => {
 };
 
 
-let rarity_filter = () => {
+const rarity_filter = () => {
   let list = document.querySelector("#list");
   let select_rarity = document.querySelector("select#filter").value;
 

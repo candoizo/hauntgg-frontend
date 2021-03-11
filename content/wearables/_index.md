@@ -1,7 +1,7 @@
 ---
-title: Wearables
+title: wearables
+description: wearables from the aavegotchi baazaar!
 author: candoizo
-# type: soon
 tags:
 - index
 ---

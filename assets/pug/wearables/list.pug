@@ -22,7 +22,7 @@
 
 .itemlist#list
 
-  |  {{$data := getJSON "static/datadir/wearables/latest.json"}}
+  |  {{$data := getJSON "data/wearables/latest.json"}}
   |  {{ range $data.items }}
   a.itemcard.wearables.flex-reverse.justify-between(
     href="{{.href}}", 

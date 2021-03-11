@@ -34,6 +34,7 @@ params:
   # title: "candoizo's log"
   # author: "candoizo"
   title: "haunt.gg"
+  description: haunt.gg indexes listings on the aavegotchi baazaar!
   desc: "waatching the baazaar!"
   profilePicture: "profile.png"
   disableThemeSwitcher: true

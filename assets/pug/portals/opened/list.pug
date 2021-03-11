@@ -7,8 +7,8 @@
 .sortbox
   p Sort by
   select#sort(onchange="resort()")
-    option Portal #
     option Price
+    option Portal #
 
 //- .flex.flex-col.mx-auto.w-11_12#list
 .itemlist#list
@@ -30,7 +30,7 @@
   //- 
   //-     img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60)
   
-  |  {{$opened := getJSON "static/datadir/portals/opened/latest.json"}}
+  |  {{$opened := getJSON "data/portals/opened/latest.json"}}
   |  {{ range $opened.items }}
   a.itemcard.opened.flex-reverse.justify-between(
     href="{{.href}}", 

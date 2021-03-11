@@ -8,8 +8,12 @@ link(rel='stylesheet', href='{{ $testStyle.RelPermalink }}' type='text/css')
 
 //-style {{ $testStyle.Content | safeCSS }}
 
+| {{ template "_internal/opengraph.html" . }} 
+| {{ template "_internal/twitter_cards.html" . }}
+
+
 //- Meta site info 
-title {{ .Title }} | haunt.biz
+title {{ .Title }} | haunt.gg
 meta(charset='utf-8')
 meta(name='viewport', content='width=device-width,initial-scale=1,viewport-fit=cover')
 meta(name="author", content="{{ .Site.Params.author }}")
@@ -50,3 +54,6 @@ link(rel='shortcut icon', href='{{ .Site.Params.favicon | relURL }}/favicon.png'
 link(rel='apple-touch-icon', sizes='180x180', href='{{ .Site.Params.favicon | relURL }}/apple-touch-icon.png')
 link(rel='icon', type='image/png', sizes='32x32', href='{{ $apple.RelPermalink }}')
 link(rel='icon', type='image/png', sizes='16x16', href='{{ $apple.RelPermalink }}')
+  
+  
+  
