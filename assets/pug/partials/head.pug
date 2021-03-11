@@ -6,11 +6,8 @@
 link(href='{{ $testStyle.RelPermalink }}', rel='preload', as='style', type='text/css')
 link(rel='stylesheet', href='{{ $testStyle.RelPermalink }}' type='text/css')
 
-//-style {{ $testStyle.Content | safeCSS }}
-
 | {{ template "_internal/opengraph.html" . }} 
 | {{ template "_internal/twitter_cards.html" . }}
-
 
 //- Meta site info 
 title {{ .Title }} | haunt.gg
@@ -18,7 +15,7 @@ meta(charset='utf-8')
 meta(name='viewport', content='width=device-width,initial-scale=1,viewport-fit=cover')
 meta(name="author", content="{{ .Site.Params.author }}")
 meta(name='description', content='{{ .Site.Params.description }}')
-link(rel='canonical', href='{{ .Site.BaseURL }}')
+link(rel='canonical', href='https://haunt.gg/')
 
 | {{- if .Site.Params.googleSiteVerify }}
 meta(name='google-site-verification', content='{{ .Site.Params.googleSiteVerify }}')
@@ -44,9 +41,6 @@ script(defer, async, src="{{ $sw.RelPermalink }}")
 //- | {{- else -}} {{- $customJS := resources.Get . -}} {{- if $customJS -}} {{- if eq $js "" -}} {{- $js = $customJS -}} {{- else -}} {{- $js = slice $js $customJS | resources.Concat "js/custom.js" -}} {{- end -}} {{- end -}} {{- end -}} {{- end -}} {{- if ne $js "" -}} {{- $secureJS := $js | resources.Minify | resources.Fingerprint -}}
 //- script(type='text/javascript', src='{{ $secureJS.Permalink }}', crossorigin='anonymous')
 //- | {{- end -}}
-
-//-  Twitter Cards 
-| {{ template "_internal/twitter_cards.html" . }}
 
 //-  Favicons, i think inject-favicon jobs in prod removes these
 | {{ $apple := $image.Resize "180x"}}

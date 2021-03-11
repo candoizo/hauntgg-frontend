@@ -29,7 +29,9 @@
       
       .flex.flex-row.w-full
         
-        .mr-2#haunt 👻 Haunt {{.haunt}}
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/gotchi.png", width=20, height=20)
+          #price.mr-2 Haunt {{.haunt}}
         
         .flex
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)

@@ -48,7 +48,9 @@
 
       .flex.flex-row.w-full
 
-        .mr-2#haunt ✨{{.rarity}}
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/rarity.svg", width=20, height=20)
+          #haunt.mr-2 {{.rarity}}
 
         .flex
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
