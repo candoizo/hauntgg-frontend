@@ -45,9 +45,11 @@
     | {{ if strings.HasSuffix .img_url "129.svg" }}
     |	{{ $src = "/aavegotchi_images/items/consumables/greater_xp.svg" }}
     | {{ end }}
+    
+    | {{ $item := replace .name " " "_" }}
 
 
-    img.mainimg(src="{{ $src }}", width=60, height=60)
+    img.mainimg(src="/aavegotchi_images/items/wearables/{{ $item }}.svg", width=60, height=60)
 
     .flex.flex-col.justify-around.ml-1
 
