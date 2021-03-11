@@ -27,7 +27,7 @@ const execa = require('gulp-execa').exec;
 gulp.task('hugo', async () => {
 
   // builddrafts creates the uncss page
-  await execa(`hugo -d test --debug --buildDrafts --environment dev`);
+  await execa(`hugo -d test --debug --buildDrafts --environment dev --baseURL .`);
   return await execa(`hugo --environment ${process.env.NODE_ENV || "dev"} --debug`);
 
 });

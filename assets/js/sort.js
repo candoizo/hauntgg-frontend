@@ -1,4 +1,4 @@
-const resort = () => {
+let resort = () => {
 
   let list = document.querySelector("#list");
   let d = document.querySelector("select#sort").selectedIndex;
@@ -14,7 +14,7 @@ const resort = () => {
   .forEach(node=>list.appendChild(node));
 }
 
-const crap_filter = () => {
+let crap_filter = () => {
   let list = document.querySelector("#list");
   let d = document.querySelector("select#filter").selectedIndex;
 
@@ -45,7 +45,7 @@ const crap_filter = () => {
 };
 
 
-const rarity_filter = () => {
+let rarity_filter = () => {
   let list = document.querySelector("#list");
   let select_rarity = document.querySelector("select#filter").value;
 

@@ -51,6 +51,7 @@ a.itemcard {
 
   @apply flex flex-row-reverse mx-auto w-full my-2 rounded p-2;
 
+  /* uncss:ignore */
   &.hide {
     @apply hidden;
   }

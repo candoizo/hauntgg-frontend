@@ -2,13 +2,9 @@ const postcss_preset_env = require('postcss-preset-env');
 const tailwindcss = require('tailwindcss')({
   config: "./assets/tailwind.config.js"
 });
-const uncss = require('postcss-uncss');
+const uncss = require('uncss').postcssPlugin;
 const css_declaration_sorter = require('css-declaration-sorter');
 const autoprefixer = require('autoprefixer'); // @TODO: test if preset_env does this automatically
-// const hugo_html_elements = require('../hugo_stats').htmlElements;
-// let items = [].concat([], ...Object.values(hugo_html_elements));
-
-// require("debug")("*")(process.env);
 
 module.exports = {
   plugins: [
@@ -16,48 +12,26 @@ module.exports = {
     tailwindcss,
     ...process.env.HUGO_ENVIRONMENT === 'release' ? [
       uncss({
+        timeout: 3,
         html: [
-          // '../public/**.html',
-        //   // 'public/post/index.html',
-        //   // 'public/post/markdown-syntax/index.html'
-        //   //'./layouts/**/*.html',
           './test/404.html',
           './test/portals/closed/index.html',
           './test/portals/opened/index.html',
           './test/wearables/index.html',
           './test/consumables/index.html',
-          './test/index.html',
-        //   // './layouts/_default/*.html',
-        //   // './layouts/partials/*.html'
-          // './test/index.html',
-        //   '../test/*.html',
-        //   '../test/portals/**/index.html',
-        //   // './test/post/markdown-syntax/index.html',
+          './test/index.html'
         ],
         report: true,
-        htmlroot: "./test/",
+        htmlroot: "./test/", // prebuild of final css classes is outputting in test
         ignoreSheets: [
           /sw.+.js/,
-          /manifest/
+          /manifest/,
+
         ],
         ignore: [
-          // items
-          // /\*/,
           `html[data-theme='dark']`,
           ':root',
           /.+hide+/g,
-          // ...hugo_html_elements.tags,
-          // ...hugo_html_elements.classes.map((e) => '.' + e),
-          // ...hugo_html_elements.ids.map((e) => '#' + e),
-          // hugo_html_elements.classes,
-          // hugo_html_elements.ids
-          // /.+chroma+/g,
-          // /.+medium-zoom+/g,
-          // /.+markdown+/g,
-          // /.+pagination+/g,
-          // /.+tag+/g,
-          // /.tag+/g,
-          // '.post-footer'
         ]
       }),
       autoprefixer, // present_env is supposed to apply this, idk
