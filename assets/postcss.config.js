@@ -45,6 +45,7 @@ module.exports = {
           // /\*/,
           `html[data-theme='dark']`,
           ':root',
+          '.hide'
           // ...hugo_html_elements.tags,
           // ...hugo_html_elements.classes.map((e) => '.' + e),
           // ...hugo_html_elements.ids.map((e) => '#' + e),
