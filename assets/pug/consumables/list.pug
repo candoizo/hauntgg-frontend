@@ -4,15 +4,19 @@
   h1 {{ .Title }}
   | {{ partial "updated_at.html" . }}
 
-.sortbox
-  p Sort by
-  select#sort(onchange="resort()")
-    option(value="price") Price
-  p Filter by
-  select#filter(onchange="crap_filter()")
-    option(value="all") All
-    option(value="xp") XP
-    option(value="kinship") Kinship
+.flex.flex-col.my-4
+    
+  input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
+
+  .sortbox
+    p Sort by
+    select#sort(onchange="resort()")
+      option(value="price") Price
+    p Filter by
+    select#filter(onchange="crap_filter()")
+      option(value="all") All
+      option(value="xp") XP
+      option(value="kinship") Kinship
 
 .itemlist#list
 
@@ -22,7 +26,8 @@
     href="{{.href}}", 
     target="_blank", 
     data-price="{{.price}}", 
-    data-index="{{.index}}"
+    data-index="{{.index}}",
+    data-name="{{.name}}"
   )
 
     | {{ $src := "/aavegotchi_images/items/consumables/kinship.svg" }}

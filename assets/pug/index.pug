@@ -131,6 +131,37 @@
               {{ $min }} - {{ $max }}
               
               {{ end }}
+              
+    //- a(href="/aavegotchis/").itemcard.aavegotchis.flex-reverse.justify-between
+    //- 
+    //-   img.mainimg(src="/aavegotchi_images/rarity.svg", width=60, height=60)
+    //- 
+    //-   .flex.flex-col.justify-around.ml-1
+    //- 
+    //-     h3.font-semibold.uppercase.text-xl Aavegotchis
+    //-     //- div Owner
+    //-     .flex.flex-row.justify-between.w-full
+    //-       //- #haunt 👻 Haunt:
+    //-       .flex
+    //-         img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
+    //-         #price.
+    //-           {{ $data := getJSON "data/consumables/latest.json" }}
+    //-           {{ $min := $data.min_price }}
+    //-           {{ $max := $data.max_price }}
+    //- 
+    //-           {{ if gt $max 9999 }}
+    //- 
+    //-           {{ $a := div $max 1000 }}
+    //-           {{ $b := math.Round $a  }}
+    //-           {{ $c := mul $a 100  }}
+    //-           {{ $d := math.Round $c  }}
+    //-           {{ $min }} - {{div $d 100}}K
+    //- 
+    //-           {{ else }}
+    //- 
+    //-           {{ $min }} - {{ $max }}
+    //- 
+    //-           {{ end }}
 
   //- .flex.flex-col.w-full.mx-auto.h-1_2
   //- 

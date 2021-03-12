@@ -30,6 +30,15 @@
 
 }
 
+input.search {
+  @apply mx-auto w-3_5 text-base p-1 text-center text-white bg-transparent rounded border-pink-400 border;
+
+  @screen md {
+    @apply w-1_3;
+  }
+}
+
+
 // contains an array of nodes, could be item listings or portals , or sections of subrarities
 .itemlist {
   @apply flex flex-col mx-auto w-11_12 mb-12;
@@ -56,6 +65,16 @@ a.itemcard {
     @apply hidden;
   }
 
+  /* uncss:ignore */
+  &.filter {
+    @apply hidden;
+  }
+
+  /* uncss:ignore */
+  &.notsearched {
+    @apply hidden;
+  }
+
   &.opened {
     @apply bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700;
   }
@@ -70,6 +89,10 @@ a.itemcard {
 
   &.consumables {
     @apply bg-gradient-to-r from-pink-800 via-pink-700 to-pink-600;
+  }
+
+  &.aavegotchis {
+    @apply bg-gradient-to-r from-yellow-700 via-yellow-700 to-yellow-600;
   }
 
   // the main visual accent
@@ -89,5 +112,9 @@ a.itemcard {
     max-width: 20px;
     max-height: 20px;
   }
+
+  // p {
+  //   @apply font-semibold;
+  // }
 
 }

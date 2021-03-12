@@ -4,21 +4,23 @@
   h1 {{ .Title }}
   | {{ partial "updated_at.html" . }}
 
-.sortbox
-  p Sort by
-  select#sort(onchange="resort()")
-    option Price
-  p Filter by
-  select#filter(onchange="rarity_filter()")
-    option(value="all") All
-    option(value="Common") Common
-    option(value="Uncommon") Uncommon
-    option(value="Rare") Rare
-    option(value="Legendary") Legendary
-    option(value="Mythical") Mythical
-    option(value="Godlike") Godlike
 
-//- potentially add a search box
+
+.flex.flex-col.my-4
+  
+  input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
+  
+  .sortbox
+    p Sort by
+    select#sort(onchange="resort()")
+      option Price
+    p Filter by
+    select#filter(onchange="rarity_filter(this.value)")
+      option(value="All") All
+      |  {{$data := getJSON "data/general.json"}}
+      |  {{ range $data.rarity }}
+      option(value="{{.}}") {{.}}
+      | {{ end }}
 
 .itemlist#list
 
@@ -30,6 +32,7 @@
     data-price="{{.price}}", 
     data-index="{{.index}}",
 		data-rarity="{{.rarity}}",
+    data-name="{{.name}}"
   )
 
     | {{ $src := "/aavegotchi_images/items/consumables/kinship.svg" }}
