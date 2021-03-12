@@ -87,6 +87,32 @@ a.itemcard {
     @apply bg-gradient-to-r from-green-900 via-green-800 to-green-700;
   }
 
+  &.rarity {
+    &.Godlike {
+      @apply bg-gradient-to-r from-green-500 via-green-500 to-green-400;
+    }
+
+    &.Mythical {
+      @apply bg-gradient-to-r from-pink-600 via-pink-500 to-pink-400;
+    }
+
+    &.Legendary {
+      @apply bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-500;
+    }
+
+    &.Rare {
+      @apply bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400;
+    }
+
+    &.Uncommon {
+      @apply bg-gradient-to-r from-blue-500 to-green-400;
+    }
+
+    &.Common {
+      @apply bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500;
+    }
+  }
+
   &.consumables {
     @apply bg-gradient-to-r from-pink-800 via-pink-700 to-pink-600;
   }

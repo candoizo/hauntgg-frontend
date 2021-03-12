@@ -5,7 +5,13 @@ let formatcolors = {
   "black": "#000",
   "white": "#FFF",
   "gotchi-purple" : "#7217F4",
-  "gotchi-pink" : "#FA34F3"
+  "gotchi-pink" : "#FA34F3",
+  "godlike" : "",
+  "mythical" :"",
+  "legendary" : "",
+  "rare":"",
+  "uncommon": "",
+  "common":""
 };
 Object.keys(colors).map((key) => {
   if (Object.keys(colors[key])) {

@@ -22,12 +22,13 @@
 
   |  {{$data := getJSON "data/consumables/latest.json"}}
   |  {{ range $data.items }}
-  a.itemcard.consumables.flex-reverse.justify-between(
+  a.flex-reverse.justify-between(
     href="{{.href}}", 
     target="_blank", 
     data-price="{{.price}}", 
     data-index="{{.index}}",
-    data-name="{{.name}}"
+    data-name="{{.name}}",
+    class="itemcard rarity {{.rarity}}"
   )
 
     | {{ $src := "/aavegotchi_images/items/consumables/kinship.svg" }}
