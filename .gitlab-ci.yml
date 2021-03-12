@@ -38,7 +38,7 @@ pages:
   when: manual
   stage: deploy
   tags:
-    - test
+    - rn-beefer
   image: registry.gitlab.com/hauntgg/hauntgg-frontend/$RELEASE_IMAGE
   variables:
     # NODE_ENV: $CI_COMMIT_REF_NAME
