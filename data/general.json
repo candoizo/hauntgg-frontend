@@ -1,3 +1,11 @@
 {
-  "rarity": ["Common", "Uncommon", "Rare", "Legendary", "Mythical", "Godlike"]
+  "rarity": ["Common", "Uncommon", "Rare", "Legendary", "Mythical", "Godlike"],
+  "colors": {
+    "Godlike": "",
+    "Mythical": "",
+    "Legendary": "",
+    "Rare": "",
+    "Uncommon": "",
+    "Common": ""
+  }
 }
