@@ -32,6 +32,8 @@ module.exports = {
           `html[data-theme='dark']`,
           ':root',
           /.+hide+/g,
+          /.+filter+/g,
+          /.+notsearched+/g,
         ]
       }),
       autoprefixer, // present_env is supposed to apply this, idk

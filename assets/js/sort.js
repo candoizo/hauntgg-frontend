@@ -82,6 +82,6 @@ let search_filter = (e) => {
 
   let select_rarity = document.querySelector("select#filter").value;
   // if (select_rarity.toLowerCase() !== "all")
-  rarity_filter()
+  rarity_filter(select_rarity)
 
 }
