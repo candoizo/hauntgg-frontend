@@ -22,6 +22,7 @@ gulp.task('public_clean', () => {
 
 const development = [
   gulp.task('public_clean'), // rm public
+  gulp.task('webpack'),
   gulp.task('hugopug'), // rm layouts, assets/pug/** ➡️ coinvanity
   gulp.task('hugo'), // layouts/** ➡️ public
 ];
@@ -80,6 +81,24 @@ gulp.task('serve', gulp.series('build', () => {
     gulp.task('hugo'),
     // gulp.task('csshashmap')
   ])).on('change', browserSync.reload);
+
+  // // when markdown content / hugo config changed
+  // gulp.watch([
+  //   './content/**/*',
+  //   './assets/js/**/*.js',
+  //   './config/**/*.yml'
+  // ], gulp.series([
+  //   gulp.task('hugo'),
+  //   gulp.task('csshashmap')
+  // ])).on('change', browserSync.reload);
+
+  // when webpack is changed
+  gulp.watch([
+    './assets/js/webpack/**/*'
+  ], gulp.series([
+    gulp.task('webpack')
+  ])).on('change', browserSync.reload);
+
   // when css is updated
   gulp.watch([
     './assets/css/*.css',

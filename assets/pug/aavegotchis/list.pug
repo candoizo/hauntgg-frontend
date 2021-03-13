@@ -1,5 +1,7 @@
 | {{ define "main" }}
 
+script(defer, async, src="/dist/app.bundle.js")
+
 .pagehead
   h1 {{ .Title }}
   | {{ partial "updated_at.html" . }}
