@@ -12,19 +12,22 @@
 import detectEthereumProvider from '@metamask/detect-provider';
 (async () => {
 
-const provider = await detectEthereumProvider();
+  const provider = await detectEthereumProvider();
 
-if (provider) {
-  // From now on, this should always be true:
-  // provider === window.ethereum
-  // startApp(provider); // initialize your app
-  console.log("eth provider detected!", provider);
-} else {
-  console.log('Please install MetaMask!');
-}})()
+  if (provider) {
+    // From now on, this should always be true:
+    // provider === window.ethereum
+    // startApp(provider); // initialize your app
+    console.log("eth provider detected!", provider);
+  } else {
+    console.log('Please install MetaMask!');
+  }
+})()
 
 
-const { ethers } = require("ethers");
+const {
+  ethers
+} = require("ethers");
 
 export function get_provider() {
   return new ethers.providers.Web3Provider(window.ethereum)
@@ -83,13 +86,29 @@ export async function listen_for_block() {
 const aavegotchi_ERC1155MarketplaceFact_string = "0xC057c4f2b12e3E0F35e03a4851063FB39A1850cD";
 const aavegotchi_contact = new ethers.Contract(aavegotchi_ERC1155MarketplaceFact, daiAbi, get_provider());
 
-export function aavegotchi_ERC1155MarketplaceFact() {
+export async function aavegotchi_ERC1155MarketplaceFact() {
 
   const diamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
 
-  const diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', diamondAddress)
-  const tx = await diamond.cancelERC1155Listings(listingIds);
+  console.log("getting contract")
+
+  // const diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', diamondAddress)
+  let diamond = await new ethers.Contract(aavegotchi_ERC1155MarketplaceFact_string, daiAbi, get_provider())
+
+  console.log("got", diamond)
+  return diamond
+  // const tx = await diamond.cancelERC1155Listings(listingIds);
   // return daiContract
+}
+
+export async function dumb_test() {
+  const diamondCreationBlock = 11516320
+  const aavegotchiDiamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
+  // let diamond
+  // diamond = await ethers.getContractAt('contracts/Aavegotchi/facets/AavegotchiFacet.sol:AavegotchiFacet', aavegotchiDiamondAddress)
+  let diamond = await new ethers.Contract(aavegotchiDiamondAddress, require("./aavegotchi/diamond"), get_provider())
+  let result = await diamond.getAavegotchi(7401)
+  console.log(result)
 }
 
 const remaning_closed = "0x86935F11C86623deC8a25696E1C19a8659CbF95d";
