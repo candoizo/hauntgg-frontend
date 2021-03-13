@@ -9,48 +9,88 @@ script(defer, async, src="/dist/app.bundle.js")
   .flex.w-full.my-2
     button#web3connect.rounded.mx-auto.bg-transparent.border.border-pink-400.text-center.text-xs.p-1.hidden(onclick=`
       
-      Promise.resolve(window.EntryPoint.common.get_wearables('listed', 5)).then(
+      Promise.resolve(window.EntryPoint.common.get_wearables('listed', 200)).then(
         async x => {
+          
+          let listing_array = await window.EntryPoint.common.parse_listing_array(x);
+          console.log("prettified listing info", listing_array); 
+          //[...list.children]
+          //.sort((a,b)=>parseInt(a.dataset.price) - parseInt(b.dataset.price))
           
           let list = document.querySelector("#list");
           let node = document.querySelector('a#template');
-          
+          let items = await window.EntryPoint.common.export_items();
           for (i in x) {
             let item = x[i];
+            let listing = await window.EntryPoint.common.parse_listing(item);
             let clone = node.cloneNode(true);
+            clone.classList.remove("filter");
             console.log(item);
-            /* console.log(await window.EntryPoint.common.get_wearables(item)); */
+            
+            clone.href = "https://aavegotchi.com/baazaar/erc1155/" + listing.href;
+            clone.querySelector("img.mainimg").src = "/aavegotchi_images/items/wearables/"+listing.type+".svg"
+            clone.querySelector('#price').innerText = listing.price;
+            clone.querySelector("#haunt").innerText = listing.rarity;
+            clone.dataset.rarity = listing.rarity;
+            clone.dataset.name = items[listing.type].name;
+            clone.dataset.price = listing.price;
+            clone.dataset.quanity = listing.quanity;
+            /* clone.dataset.circulation =  */
+            
+            console.log(listing.type, items[listing.type], listing.rarity);
+            clone.querySelector("h3").innerText = items[listing.type].name
+            clone.classList.add(listing.rarity)
             list.appendChild(clone);
           }
           
         }
       );
     
-    `) Metamask + Matic detected, want to go live?
-    script Promise.resolve(window.EntryPoint.common.on_metamask_matic_network).then(x => {if (x) document.querySelector("#web3connect").classList.remove('hidden')})
+    `).animate-pulse Metamask + Matic found, live data incoming!
+    script Promise.resolve(window.EntryPoint.common.on_metamask_matic_network).then(x => {console.log(x);if (x) document.querySelector("#web3connect").classList.remove('hidden')})
 
-.sortbox
-  p Sort by
-  select#sort(onchange="resort()")
-    option Price
-    option Rarity
-  p Filter by
-  select#filter(onchange="rarity_filter()")
-    option(value="all") All
-    option(value="399") 300-399
-    option(value="499") 400-499
-    option(value="549") 500-549
-    option(value="599") 550-599
-    option(value="600") 600+
-    //- option(value="Godlike") Godlike
+//- .sortbox
+//-   p Sort by
+//-   select#sort(onchange="resort()")
+//-     option Price
+//-     option Rarity
+//-   p Filter by
+//-   select#filter(onchange="rarity_filter()")
+//-     option(value="all") All
+//-     option(value="399") 300-399
+//-     option(value="499") 400-499
+//-     option(value="549") 500-549
+//-     option(value="599") 550-599
+//-     option(value="600") 600+
+//-     //- option(value="Godlike") Godlike
+
+.flex.flex-col.my-4
+  
+  input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
+  
+  .sortbox
+    p Sort by
+    select#sort(onchange="resort()")
+      option Price
+    p Filter by
+    select#filter(onchange="rarity_filter(this.value)")
+      option(value="All") All
+      |  {{$data := getJSON "data/general.json"}}
+      |  {{ range $data.rarity }}
+      option(value="{{.}}") {{.}}
+      | {{ end }}
 
 .itemlist#list
 
-  a#template.flex-reverse.justify-between(
-    class="itemcard rarity Mythical"
+  //- hidden, cloned for generating new listings
+  a.filter.hidden#template.flex-reverse.justify-between(
+    class="itemcard rarity",
+    data-name="Void",
+    data-price="0",
+    data-rarity="Godlike"
   )
 
-    img.mainimg(src="/aavegotchi_images/items/wearables/127.svg", width=60, height=60, decoding="async")
+    img.mainimg(width=60, height=60, decoding="async")
 
     .flex.flex-col.justify-around.ml-1
 
@@ -66,5 +106,7 @@ script(defer, async, src="/dist/app.bundle.js")
         .flex
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
           #price
+
+| {{ partial "sort_js.html" . }}
 
 | {{ end }}

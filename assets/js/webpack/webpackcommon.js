@@ -308,19 +308,62 @@ export async function get_erc721_listings(
   )
 }
 
+// from aavegotchi-contracts/*/itemTypes.js
+// not exported normally
+export function calculateRarityScoreModifier (maxQuantity) {
+  if (maxQuantity >= 1000) return 1
+  if (maxQuantity >= 500) return 2
+  if (maxQuantity >= 250) return 5
+  if (maxQuantity >= 100) return 10
+  if (maxQuantity >= 10) return 20
+  if (maxQuantity >= 1) return 50
+  return 0
+}
+
+export async function parse_listing_array(
+  array
+) {
+  let res = array.map(async x => await parse_listing(x));
+  return res;
+}
+
 export async function parse_listing(
   e
 ) {
 
-  // let listing_id = ethers.BigNumber.from(e).toNumber();
+
+  console.log("parse_listing ", e);
   let listing_info = e
   let price = ethers.utils.formatEther(listing_info.priceInWei);
+  let listing_id = ethers.BigNumber.from(e.listingId).toNumber();
+
+  // quantity listed, but not quanity in circulation
+  let qty = ethers.BigNumber.from(e.quantity).toNumber();
+
+  let type = ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber();
+
+  let item_info = (await export_items())[type];
+  let circulating = (await export_items())[type].maxQuantity;
+  let rarity = {
+    1: "Common",
+    2: "Uncommon",
+    5: "Rare",
+    10: "Legendary",
+    20: "Mythical",
+    50: "Godlike"
+  }[calculateRarityScoreModifier(circulating)];
+  // switch rarity:
+  //   case 1 =>
+
+  // let listing_id = ethers.BigNumber.from(e).toNumber();
   let listing_dict = {
-    name: "", // something to lookup id -> regular name?
-    href: "https://aavegotchi.com/baazaar/erc1155/" + listing_id,
-    type: ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber(),
-    quantity: ethers.BigNumber.from(listing_info.quantity).toNumber(),
-    price: price
+    // maybe discern from ERC1155 and ERC721
+    name: item_info.name, // something to lookup id -> regular name?
+    href: listing_id,
+    type: type,
+    quantity: qty,
+    price: price,
+    rarity: rarity
   }
   console.log(
     // moment().format('MMMM Do YYYY, h:mm:ss a'),
@@ -369,6 +412,14 @@ export async function on_metamask_matic_network() {
     return provider.networkVersion == 137;
   }
   return false;
+}
+
+
+const itemTypes = import("./aavegotchi/itemTypes");
+
+// const itemTypes;
+export async function export_items() {
+  return (await itemTypes).itemTypes;
 }
 
 // seems to work for looking at transaciton, but returns 4000...
