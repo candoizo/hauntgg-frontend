@@ -9,16 +9,18 @@
 //   return false
 // }
 
+
+
+// SCRIPTS/itemTypes.js in the aavegotchi repo has a bunch of item dicts
+
 import detectEthereumProvider from '@metamask/detect-provider';
 (async () => {
-
-  const provider = await detectEthereumProvider();
-
+  let provider = await detectEthereumProvider();
   if (provider) {
     // From now on, this should always be true:
     // provider === window.ethereum
     // startApp(provider); // initialize your app
-    console.log("eth provider detected!", provider);
+    console.log("eth provider detected!", provider.networkVersion, provider );
   } else {
     console.log('Please install MetaMask!');
   }
@@ -82,16 +84,12 @@ export async function listen_for_block() {
 
 }
 
-
 const aavegotchi_ERC1155MarketplaceFact_string = "0xC057c4f2b12e3E0F35e03a4851063FB39A1850cD";
 const aavegotchi_contact = new ethers.Contract(aavegotchi_ERC1155MarketplaceFact, daiAbi, get_provider());
-
 export async function aavegotchi_ERC1155MarketplaceFact() {
 
   const diamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
-
-  console.log("getting contract")
-
+  console.log("getting contract");
   // const diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', diamondAddress)
   let diamond = await new ethers.Contract(aavegotchi_ERC1155MarketplaceFact_string, daiAbi, get_provider())
 
@@ -173,8 +171,6 @@ export async function market_test() {
   // console.log(count)
 
   // diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
-
-
   // on page load
 
   const result1 = await diamond.getERC1155Listing(29302)
@@ -203,11 +199,7 @@ export async function market_test() {
           console.log('Open listing quantity greater than users balance. ListingId: ', result.listingId.toString())
           console.log(result.quantity.toString(), ' and ', amount.toString())
         }
-
-
       }
-
-
     }
   }
 }
@@ -221,7 +213,6 @@ export async function aavegotchi_diamond() {
 
 // dont loop through all the potential 29000 listings
 const snapshot_base = 29000;
-
 export async function baazaar_1155() {
   // for (let i = 0; i)
   try {
@@ -240,27 +231,144 @@ export function current_listings() {
   return listings;
 }
 
-import moment from "moment";
+// import moment from "moment";
 export async function listen_market_events() {
-  // ERC1155ListingAdd
+
   let diamond = await aavegotchi_diamond();
+
   diamond.on("ERC1155ListingAdd", async (e) => {
 
     let listing_id = ethers.BigNumber.from(e).toNumber();
     let listing_info = await diamond.getERC1155Listing(listing_id);
     let price = ethers.utils.formatEther(listing_info.priceInWei);
-    console.log(moment().format('MMMM Do YYYY, h:mm:ss a'), ". new listing: ", "https://aavegotchi.com/baazaar/erc1155/"+listing_id, "! check it right naoo!", `price: ${price}`, ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber(), listing_info);
-    current_listings().push(listing_id);
+    let listing_dict = {
+      name: "", // something to lookup id -> regular name?
+      href: "https://aavegotchi.com/baazaar/erc1155/" + listing_id,
+      type: ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber(),
+      quantity: ethers.BigNumber.from(listing_info.quantity).toNumber(),
+      price: price
+    }
+    console.log(
+      // moment().format('MMMM Do YYYY, h:mm:ss a'),
+      ". new listing: ",
+      listing_dict,
+      listing_info
+    );
+    current_listings().push(listing_dict);
 
-    // document.querySelector("#list").add
   });
+
+  // sold listing
+  diamond.on("ERC1155ExecutedListing", async (e) => {
+    console.log("sold listing", e);
+  });
+
+  // // cancelled listing
+  // diamond.on("ERC1155ListingCancelled", async (e) => {
+  //   console.log("cancelled listing", e);
+  // });
+
+  // 0 is wearable, 1 is badge, 2 is consumable, 3 is tickets
+  // let r = await diamond.getERC1155Listings(0 , "listed", 250);
+  // // console.log(r);
+  // for (let i in r) {
+  //   let listing = r[i];
+  //   console.log(r[i]);
+  // }
+
+
+  let wearables = await get_erc1155_listings(0, "listed", 200);
+  let consumables = await get_erc1155_listings(1, "listed", 100);
+  let tickets = await get_erc1155_listings(2, "listed", 100);
+
+  console.log(wearables, consumables, tickets);
+
 }
+
+
+export async function get_erc1155_listings(
+  type, // 0 is wearable, 1 is badge, 2 is consumable, 3 is tickets
+  status, // "listed" or "purchased"
+  count, // number of listings to try and fetch
+) {
+  let diamond = await aavegotchi_diamond();
+  return await diamond.getERC1155Listings(
+    type, status, count
+  )
+}
+
+export async function get_erc721_listings(
+  type,
+  status,
+  count
+) {
+  let diamond = await aavegotchi_diamond();
+  return await diamond.getERC721Listings(
+    type, status, count
+  )
+}
+
+export async function parse_listing(
+  e
+) {
+
+  // let listing_id = ethers.BigNumber.from(e).toNumber();
+  let listing_info = e
+  let price = ethers.utils.formatEther(listing_info.priceInWei);
+  let listing_dict = {
+    name: "", // something to lookup id -> regular name?
+    href: "https://aavegotchi.com/baazaar/erc1155/" + listing_id,
+    type: ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber(),
+    quantity: ethers.BigNumber.from(listing_info.quantity).toNumber(),
+    price: price
+  }
+  console.log(
+    // moment().format('MMMM Do YYYY, h:mm:ss a'),
+    ". new listing: ",
+    listing_dict,
+    listing_info
+  );
+  current_listings().push(listing_dict);
+
+  return listing_dict;
+  // return await get_erc1155_listings(0, status, count);
+}
+
+export async function get_wearables(
+  status,
+  count
+) {
+  return await get_erc1155_listings(0, status, count);
+}
+
+export async function get_consumables(
+  status,
+  count
+) {
+  return await get_erc1155_listings(1, status, count);
+}
+
+export async function get_tickets(
+  status,
+  count
+) {
+  return await get_erc1155_listings(2, status, count);
+}
+
 
 // pass a funtion to get the arg pased to it, add to UI when called
 export async function export_new_listings(e) {
   // ERC1155ListingAdd
   let diamond = await aavegotchi_diamond();
   diamond.on("ERC1155ListingAdd", e);
+}
+
+export async function on_metamask_matic_network() {
+  let provider = await detectEthereumProvider();
+  if (provider) {
+    return provider.networkVersion == 137;
+  }
+  return false;
 }
 
 // seems to work for looking at transaciton, but returns 4000...

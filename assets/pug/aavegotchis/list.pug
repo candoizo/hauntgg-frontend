@@ -6,7 +6,28 @@ script(defer, async, src="/dist/app.bundle.js")
   h1 {{ .Title }}
   | {{ partial "updated_at.html" . }}
 
-  .text-xs.mb-2 Doublecheck the inventory before buying 🦍
+  .flex.w-full.my-2
+    button#web3connect.rounded.mx-auto.bg-transparent.border.border-pink-400.text-center.text-xs.p-1.hidden(onclick=`
+      
+      Promise.resolve(window.EntryPoint.common.get_wearables('listed', 5)).then(
+        async x => {
+          
+          let list = document.querySelector("#list");
+          let node = document.querySelector('a#template');
+          
+          for (i in x) {
+            let item = x[i];
+            let clone = node.cloneNode(true);
+            console.log(item);
+            /* console.log(await window.EntryPoint.common.get_wearables(item)); */
+            list.appendChild(clone);
+          }
+          
+        }
+      );
+    
+    `) Metamask + Matic detected, want to go live?
+    script Promise.resolve(window.EntryPoint.common.on_metamask_matic_network).then(x => {if (x) document.querySelector("#web3connect").classList.remove('hidden')})
 
 .sortbox
   p Sort by
@@ -23,13 +44,27 @@ script(defer, async, src="/dist/app.bundle.js")
     option(value="600") 600+
     //- option(value="Godlike") Godlike
 
+.itemlist#list
+
+  a#template.flex-reverse.justify-between(
+    class="itemcard rarity Mythical"
+  )
+
+    img.mainimg(src="/aavegotchi_images/items/wearables/127.svg", width=60, height=60, decoding="async")
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3.font-semibold.uppercase.text-xl 
+
+      .flex.flex-row.w-full
+
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/rarity.svg", width=20, height=20)
+          #haunt.mr-2
 
 
-
-//- section.e404
-//-   h1 Coming Soon, hopefully.
-//-   h2 {{ i18n "page_not_found" }}
-//-   p {{ i18n "page_does_not_exist" }}
-//-   p {{ i18n "head_back" "/" | safeHTML }}
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
+          #price
 
 | {{ end }}
