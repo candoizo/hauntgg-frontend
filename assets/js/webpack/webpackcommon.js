@@ -102,7 +102,7 @@ export async function aavegotchi_ERC1155MarketplaceFact() {
 }
 
 export async function dumb_test() {
-  const diamondCreationBlock = 11516320
+  let diamondCreationBlock = 11516320
   const aavegotchiDiamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
   // let diamond
   // diamond = await ethers.getContractAt('contracts/Aavegotchi/facets/AavegotchiFacet.sol:AavegotchiFacet', aavegotchiDiamondAddress)
@@ -153,29 +153,36 @@ export async function dumb_test() {
 const remaning_closed = "0x86935F11C86623deC8a25696E1C19a8659CbF95d";
 export async function market_test() {
 
+  let diamondCreationBlock = 11516320;
   let diamond = await aavegotchi_diamond();
   // const erc1155Marketplace = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
   // const itemsFacet = await ethers.getContractAt('contracts/Aavegotchi/facets/ItemsFacet.sol:ItemsFacet', aavegotchiDiamondAddress)
 
 
-  // diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
-  let filter = diamond.filters.ERC1155ListingAdd()
-  let results = await diamond.queryFilter(filter, diamondCreationBlock)
-  let count = 0;
-  for (const result of results) {
-    count++
-    console.log('diamond.filters.ERC1155ListingAdd()', result);
-    if (result.args.erc1155TypeId.eq(65)) {
-      console.log(result.args)
-    }
-  }
-  console.log(count)
+  // // diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
+  // let filter = diamond.filters.ERC1155ListingAdd()
+  // let results = await diamond.queryFilter(filter, diamondCreationBlock)
+  // let count = 0;
+  // for (const result of results) {
+  //   count++
+  //   console.log('diamond.filters.ERC1155ListingAdd()', result);
+  //   if (result.args.erc1155TypeId.eq(65)) {
+  //     console.log(result.args)
+  //   }
+  // }
+  // console.log(count)
 
-  diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
-  const result1 = await diamond.getERC1155Listing(1273)
-  console.log(result1)
+  // diamond = await ethers.getContractAt('ERC1155MarketplaceFacet', aavegotchiDiamondAddress)
+
+
+  // on page load
+
+  const result1 = await diamond.getERC1155Listing(29302)
+  console.log('diamond.filters.getERC1155Listing(29302)', result1)
   console.log(result1.erc1155TypeId.toString())
 
+  let thousands = await diamond.getERC1155Listing(30000);
+  console.log('diamond.filters.getERC1155Listing(30000)', thousands)
 
 
   for (let i = 0; i < 35000; i++) {
@@ -210,6 +217,50 @@ export async function aavegotchi_diamond() {
   // let diamond
   // diamond = await ethers.getContractAt('contracts/Aavegotchi/facets/AavegotchiFacet.sol:AavegotchiFacet', aavegotchiDiamondAddress)
   return await new ethers.Contract(aavegotchiDiamondAddress, require("./aavegotchi/diamond"), get_provider())
+}
+
+// dont loop through all the potential 29000 listings
+const snapshot_base = 29000;
+
+export async function baazaar_1155() {
+  // for (let i = 0; i)
+  try {
+
+  } catch (e) {
+    console.log("error, so i hope no more listings for now!");
+  }
+  let diamond = await aavegotchi_diamond();
+  const result1 = await diamond.getERC1155Listing(29302)
+  console.log('diamond.filters.getERC1155Listing(29302)', result1)
+  console.log(result1.erc1155TypeId.toString())
+}
+
+const listings = [];
+export function current_listings() {
+  return listings;
+}
+
+import moment from "moment";
+export async function listen_market_events() {
+  // ERC1155ListingAdd
+  let diamond = await aavegotchi_diamond();
+  diamond.on("ERC1155ListingAdd", async (e) => {
+
+    let listing_id = ethers.BigNumber.from(e).toNumber();
+    let listing_info = await diamond.getERC1155Listing(listing_id);
+    let price = ethers.utils.formatEther(listing_info.priceInWei);
+    console.log(moment().format('MMMM Do YYYY, h:mm:ss a'), ". new listing: ", "https://aavegotchi.com/baazaar/erc1155/"+listing_id, "! check it right naoo!", `price: ${price}`, ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber(), listing_info);
+    current_listings().push(listing_id);
+
+    // document.querySelector("#list").add
+  });
+}
+
+// pass a funtion to get the arg pased to it, add to UI when called
+export async function export_new_listings(e) {
+  // ERC1155ListingAdd
+  let diamond = await aavegotchi_diamond();
+  diamond.on("ERC1155ListingAdd", e);
 }
 
 // seems to work for looking at transaciton, but returns 4000...
