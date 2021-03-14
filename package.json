@@ -83,6 +83,7 @@
     "textlint-rule-sentence-length": "^2.2.0",
     "textlint-rule-stop-words": "^2.0.9",
     "uncss": "^0.17.3",
+    "webpack": "^5.25.0",
     "webpack-stream": "^6.1.2"
   },
   "dependencies": {},
