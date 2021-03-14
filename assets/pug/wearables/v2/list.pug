@@ -1,5 +1,6 @@
 | {{ define "main" }}
 
+| {{ partial "utils_js.html" . }}
 | {{ partial "dist_js.html" . }}
 
 .pagehead
@@ -13,15 +14,16 @@
   input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
   
   .checkbox.my-auto
-    input#invert.form-checkbox.my-auto.border-pink-400.rounded.border.mx-4(type='checkbox' onchange='wearables_resort()')
+    input#invert.form-checkbox.my-auto.border-pink-400.rounded.border.mx-4(type='checkbox' onchange='invert_list(document.querySelector("#list"))')
     span Reverse Sort
     
   .sortbox
     
     p Sort
-    select#sort(onchange="wearables_resort()")
-      option Latest
-      option Price
+    select#sort(onchange="smart_sort(this.value)")
+      //- value of this corresponds to data-src attribute to sort by
+      option(value="index") Latest
+      option(value="price") Price
     p Filter
     select#filter(onchange="rarity_filter(this.value)")
       option(value="All") All
@@ -59,7 +61,7 @@
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
           #price
 
-| {{ partial "0_js.html" . }}
+| {{ partial "js/wearables_js.html" . }}
 | {{ partial "sort_js.html" . }}
 
 | {{ end }}

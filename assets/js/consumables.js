@@ -1,7 +1,7 @@
 const setup = () => {
 
   // do this twice in a then clause
-  Promise.resolve(window.EntryPoint.common.erc1155.get_wearables('listed', 250)).then(
+  Promise.resolve(window.EntryPoint.common.erc1155.get_consumables('listed', 150)).then(
     async x => {
 
       let listing_array = await window.EntryPoint.common.erc1155.parse_listing_array(x);
@@ -23,8 +23,8 @@ const setup = () => {
 let new_thing = async (res) => {
   console.log('new thing? ', res);
 
-  // make sure its not a potion, or "the void" 👻
-  if (window.EntryPoint.common.potion_types().includes(res.type) || res.type == 0) {
+  // make sure its IS a potion, and not "the void" 👻
+  if (!window.EntryPoint.common.potion_types().includes(res.type) || res.type == 0) {
     return;
   }
 

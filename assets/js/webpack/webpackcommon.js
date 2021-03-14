@@ -285,6 +285,9 @@ import { aavegotchi_diamond } from "./src/diamond";
 //
 // }
 
+import * as erc721 from "./src/erc721";
+export { erc721 };
+
 import * as erc1155 from "./src/erc1155";
 export { erc1155 };
 
