@@ -9,5 +9,5 @@ echo "--no-sandbox" > /root/.config/chromium-flags.conf
 # installs npm packages needed for gulp in a more cacheable way
 WORKDIR /cache/
 COPY package*.json ./
-RUN yarn
+RUN yarn && yarn run browserslist --update-db
 ONBUILD RUN ln -s /cache/node_modules ./node_modules

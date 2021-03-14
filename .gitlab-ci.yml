@@ -48,6 +48,6 @@ pages:
     - release
   script:
     - mkdir -p static
-    - "[[ $RELEASE_IMAGE = build:rolling ]] && yarn run gulp build || cp -R /public ." # only build:rolling has yarn + deps
+    - "[[ $RELEASE_IMAGE = build:rolling ]] && yarn && yarn run gulp build || cp -R /public ." # only build:rolling has yarn + deps
   # after_script:
   #   - yarn run semantic-release
