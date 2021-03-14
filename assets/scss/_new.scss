@@ -144,3 +144,56 @@ a.itemcard {
   // }
 
 }
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #68D391;
+  // @screen dark-mode {
+  //   border-color: var(--purple-600);
+  // }
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #68D391;
+  // @screen dark-mode {
+  //   background-color: var(--purple-600);
+  // }
+}
+
+.checkbox {
+  @apply w-full flex justify-center text-lg mt-2;
+
+  // #charcase / #split
+  input {
+    @apply my-auto mr-2 border border-pink-400 rounded;
+    // @apply w-full border shadow text-center mx-auto text-xl ;
+
+    @apply text-pink-400;
+
+    &:not(:checked) {
+    //   @screen dark-mode {
+        @apply bg-transparent; // border border-pink-400;
+    //   }
+    }
+    // &:not(:checked) {
+    //   @screen dark-mode {
+    //     @apply bg-indigo-900 ;
+    //   }
+    // }
+
+  }
+
+  input[type='checkbox']:not(:checked) {
+    @apply bg-transparent ;
+  }
+
+  // input#invert {
+  //
+  //
+  //   @apply bg-transparent;
+  //   // @screen dark-mode {
+  //   //   @apply text-orange-500;
+  //   // }
+  // }
+
+}

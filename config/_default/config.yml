@@ -5,6 +5,7 @@ disableHugoGeneratorInject: true
 disableKinds:
   - taxonomy
   - term
+ignoreFiles: ["\\.bak$" ]
 
 # holy this fixed gitllab allowing me to preview in job artifacts..!
 relativeURLs: true
@@ -28,26 +29,16 @@ markup:
       unsafe: true
 
 params:
-  customCSS:
-    # - css/syntax.css # hugo gen chromastyles --style=fruity > assets/css/custom.css
-    # - css/custom.css # scss/main.scss postcss tailwind
-  # title: "candoizo's log"
-  # author: "candoizo"
   title: "haunt.gg"
+  author: candoizo
   description: haunt.gg indexes listings on the aavegotchi baazaar!
   desc: "waatching the baazaar!"
   profilePicture: "profile.png"
-  disableThemeSwitcher: true
   displayMode: "dark"
-  doNotLoadAnimations: true
   indexdateformat: Mon. Jan 2, 2006
 
 menu:
   main:
-    # - name: "🏠 /"
-    #   identifier: "home"
-    #   weight: 100
-    #   url: "/"
     - name: "🌌 Closed Portals"
       weight: 200
       identifier: "closed_portals"
@@ -64,6 +55,7 @@ menu:
       weight: 500
       identifier: "consumables"
       url: "/consumables/"
+
     # - name: "👾 Aavegotchis"
     #   weight: 600
     #   identifier: "aavegotchis"

@@ -34,7 +34,7 @@ module.exports = {
   purge: false,
   plugins: [
     // require('@tailwindcss/typography'),
-    // require('@tailwindcss/custom-forms'),
+    require('@tailwindcss/custom-forms'),
     // require('tailwindcss-children'),
     require('@tailwindcss/line-clamp'),
     require('tailwind-color-vars')({

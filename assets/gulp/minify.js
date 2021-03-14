@@ -10,7 +10,7 @@ gulp.task('uglify', () =>
       ecma: "2017",
       compress: {
         passes: 1,
-        drop_console: true,
+        drop_console: false,//true,
         keep_fnames: true
       },
       toplevel: false,

@@ -12,13 +12,15 @@ module.exports = {
     tailwindcss,
     ...process.env.HUGO_ENVIRONMENT === 'release' ? [
       uncss({
-        timeout: 3,
+        // timeout: 3,
         html: [
           './test/404.html',
           './test/portals/closed/index.html',
           './test/portals/opened/index.html',
           './test/wearables/index.html',
           './test/consumables/index.html',
+          './test/wearables/snapshot/index.html',
+          './test/consumables/snapshot/index.html',
           './test/index.html'
         ],
         report: true,
@@ -34,6 +36,13 @@ module.exports = {
           /.+hide+/g,
           /.+filter+/g,
           /.+notsearched+/g,
+          /.+checkbox+/g,
+          /.+Common+/g,
+          /.+Uncommon+/g,
+          /.+Rare+/g,
+          /.+Legendary+/g,
+          /.+Mythical+/g,
+          /.+Godlike+/g,
         ]
       }),
       autoprefixer, // present_env is supposed to apply this, idk

@@ -1,8 +1,8 @@
 ---
 title: consumables
-description: consumables from the aavegotchi baazaar!
+description: live consumables from the aavegotchi baazaar!
 author: candoizo
-# type: soon
+type: consumables/v2
 tags:
 - index
 ---
