@@ -1,7 +1,7 @@
 
 //- | {{ if eq .Hugo.Environment "release" }}
 
-| {{ $js := resources.Get "js/0.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
+| {{ $js := resources.Get "js/2.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
 script(src="{{$secJs.RelPermalink}}")
 
 //- | {{ else }}

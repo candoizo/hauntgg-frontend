@@ -9,6 +9,9 @@ let mm_check = async () => {
       metamask_wearable_setup();
     } else {
       throw dapp;
+      // connect.innerText = "⁉️ Metamask / Matic not found! want a snapshot?";
+      // connect.href="./snapshot/";
+      // connect.classList.remove("animate-pulse");
     }
 
   } catch (e) {
@@ -32,22 +35,76 @@ if (document.readyState === 'loading') {
 let metamask_wearable_setup = () => {
 
   // do this twice in a then clause
-  Promise.resolve(window.EntryPoint.common.erc1155.get_wearables('listed', 250)).then(
+  Promise.resolve(window.EntryPoint.common.get_portals_closed('listed', 250)).then(
     async x => {
 
-      let listing_array = await window.EntryPoint.common.erc1155.parse_listing_array(x);
+      let listing_array = await window.EntryPoint.common.parse_listing_array(x);
+      // console.log("prettified listing info", listing_array);
+
+      // let items = await window.EntryPoint.common.export_items();
+      let list = document.querySelector("#list");
+      let node = document.querySelector('a#template');
+
+      // let c = 0;
       console.log(await listing_array[0], await listing_array.reverse()[0]);
-      listing_array.map(async (listing) => {
-        new_thing(await listing)
+      listing_array.map(async (listing, index) => {
+        let res = await listing;
+        // console.log("listing_array res ", res);
+        // let clone = node.cloneNode(true);
+        // clone.classList.remove("filter");
+        //
+        // clone.href += res.href;
+        // clone.querySelector("img.mainimg").src = "/aavegotchi_images/items/wearables/" + res.type + ".svg"
+        // clone.querySelector('#price').innerText = res.price;
+        // clone.querySelector("#haunt").innerText = res.rarity;
+        // clone.dataset.rarity = res.rarity;
+        // clone.dataset.name = res.name;
+        // clone.dataset.price = res.price;
+        // clone.dataset.quanity = res.quanity;
+        // clone.dataset.index = res.href; // lowest listing is oldest
+        // // c++;
+        // clone.querySelector("h3").innerText = res.name;
+        // clone.classList.add(res.rarity)
+        // list.appendChild(clone);
+        new_thing(res)
       });
+
+      //[...list.children]
+      //.sort((a,b)=>parseInt(a.dataset.price) - parseInt(b.dataset.price))
+
+
+      // for (let i in x) {
+      //   let item = x[i];
+      //   let listing = await window.EntryPoint.common.parse_listing(item);
+      //   let clone = node.cloneNode(true);
+      //   clone.classList.remove("filter");
+      //   console.log(item);
+      //
+      //   clone.href = "https://aavegotchi.com/baazaar/erc1155/" + listing.href;
+      //   clone.querySelector("img.mainimg").src = "/aavegotchi_images/items/wearables/" + listing.type + ".svg"
+      //   clone.querySelector('#price').innerText = listing.price;
+      //   clone.querySelector("#haunt").innerText = listing.rarity;
+      //   clone.dataset.rarity = listing.rarity;
+      //   clone.dataset.name = items[listing.type].name;
+      //   clone.dataset.price = listing.price;
+      //   clone.dataset.quanity = listing.quanity;
+      //   /* clone.dataset.circulation =  */
+      //
+      //   console.log(listing.type, items[listing.type], listing.rarity);
+      //   clone.querySelector("h3").innerText = items[listing.type].name
+      //   clone.classList.add(listing.rarity)
+      //   list.appendChild(clone);
+      // }
 
       document.querySelector("#web3connect").classList.remove('animate-pulse')
       document.querySelector("#web3connect").innerText = "Metamask + Matic found, using live data!"
 
     }
   ).then(() => {
-    console.log("Successfully loaded past entries! listen for new ones");
-    window.EntryPoint.common.erc1155.export_new_listings(new_thing);
+    console.log("Successfully loaded! listen for new ones");
+    // window.EntryPoint.common.export_new_listings(new_thing);
+
+    window.EntryPoint.common.export_new_721_listings(new_thing);
   });
 }
 
@@ -111,7 +168,7 @@ let new_thing = async (res) => {
   clone.id = res.href;
 
   clone.href += res.href;
-  clone.querySelector("img.mainimg").src += res.type + ".svg"
+  clone.querySelector("img.mainimg").src = "/aavegotchi_images/items/wearables/" + res.type + ".svg"
   clone.querySelector('#price').innerText = humanize_num(res.price);
   clone.querySelector("#haunt").innerText = res.rarity;
   clone.dataset.rarity = res.rarity;

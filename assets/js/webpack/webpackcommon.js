@@ -1,45 +1,39 @@
-// const Web3 = require("web3");
-//
-// export function eth_enabled () {
-//   if (window.web3) {
-//     window.web3 = new Web3(window.web3.currentProvider);
-//
-//     return true;
+import {calc_rsm, all_items} from "./src/gotchi";
+
+import { ethers } from 'ethers';
+// import detectEthereumProvider from '@metamask/detect-provider';
+
+// const {
+//   ethers
+// } = require("ethers");
+// (async () => {
+//   let provider = await detectEthereumProvider();
+//   if (provider) {
+//     // From now on, this should always be true:
+//     // provider === window.ethereum
+//     // startApp(provider); // initialize your app
+//     console.log("eth provider detected!", provider.networkVersion, provider );
+//   } else {
+//     console.log('Please install MetaMask!');
 //   }
-//   return false
+// })()
+
+// prob migrate from .mm
+// import { potion_types } from "./src/metamask";
+// export {potion_types};
+
+
+// export function get_provider() {
+//   return new ethers.providers.Web3Provider(window.ethereum)
 // }
-
-
-
-// SCRIPTS/itemTypes.js in the aavegotchi repo has a bunch of item dicts
-
-import detectEthereumProvider from '@metamask/detect-provider';
-(async () => {
-  let provider = await detectEthereumProvider();
-  if (provider) {
-    // From now on, this should always be true:
-    // provider === window.ethereum
-    // startApp(provider); // initialize your app
-    console.log("eth provider detected!", provider.networkVersion, provider );
-  } else {
-    console.log('Please install MetaMask!');
-  }
-})()
-
-
-const {
-  ethers
-} = require("ethers");
-
-export function get_provider() {
-  return new ethers.providers.Web3Provider(window.ethereum)
-}
 
 // ignore these in the wearable listings thing
 // only add these in the potion section
-export function potion_types() {
-  return [126,127,128,129]
-}
+import { potion_types } from "./src/erc1155";
+export {potion_types};
+// export function potion_types() {
+//   return [126,127,128,129]
+// }
 
 // export function get_network() {
 //   return new ethers.providers.JsonRpcProvider({
@@ -50,8 +44,6 @@ export function potion_types() {
 // export function get_block(e) {
 //   return get_provider().getBlock(e || null)
 // }
-
-
 
 //// testing things
 
@@ -210,12 +202,14 @@ export function potion_types() {
 //   }
 // }
 
-export async function aavegotchi_diamond() {
-  let aavegotchiDiamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
-  // let diamond
-  // diamond = await ethers.getContractAt('contracts/Aavegotchi/facets/AavegotchiFacet.sol:AavegotchiFacet', aavegotchiDiamondAddress)
-  return await new ethers.Contract(aavegotchiDiamondAddress, require("./aavegotchi/diamond"), get_provider())
-}
+// export async function aavegotchi_diamond() {
+//   let aavegotchiDiamondAddress = '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
+//   // let diamond
+//   // diamond = await ethers.getContractAt('contracts/Aavegotchi/facets/AavegotchiFacet.sol:AavegotchiFacet', aavegotchiDiamondAddress)
+//   return await new ethers.Contract(aavegotchiDiamondAddress, require("./aavegotchi/diamond"), get_provider())
+// }
+
+import { aavegotchi_diamond } from "./src/diamond";
 
 // // dont loop through all the potential 29000 listings
 // const snapshot_base = 29000;
@@ -232,10 +226,10 @@ export async function aavegotchi_diamond() {
 //   console.log(result1.erc1155TypeId.toString())
 // }
 
-const listings = [];
-export function current_listings() {
-  return listings;
-}
+// const listings = [];
+// export function current_listings() {
+//   return listings;
+// }
 
 // // import moment from "moment";
 // export async function listen_market_events() {
@@ -291,21 +285,23 @@ export function current_listings() {
 //
 // }
 
+import * as erc1155 from "./src/erc1155";
+export { erc1155 };
 
-export async function get_erc1155_listings(
-  type, // 0 is wearable, 1 is badge, 2 is consumable, 3 is tickets
-  status, // "listed" or "purchased"
-  count, // number of listings to try and fetch
-) {
-  let diamond = await aavegotchi_diamond();
-  return await diamond.getERC1155Listings(
-    type, status, count
-  )
-}
+// export async function get_erc1155_listings(
+//   type, // 0 is wearable, 1 is badge, 2 is consumable, 3 is tickets
+//   status, // "listed" or "purchased"
+//   count, // number of listings to try and fetch
+// ) {
+//   let diamond = await aavegotchi_diamond();
+//   return await diamond.getERC1155Listings(
+//     type, status, count
+//   )
+// }
 
 export async function get_erc721_listings(
-  type,
-  status,
+  type,  // 0 == portal, 1 == vrf pending, 1 == open portal, 2 == Aavegotchi.
+  status, // "listed" or "purchased"
   count
 ) {
   let diamond = await aavegotchi_diamond();
@@ -316,113 +312,130 @@ export async function get_erc721_listings(
 
 // from aavegotchi-contracts/*/itemTypes.js
 // not exported normally
-export function calc_rsm (maxQuantity) {
-  if (maxQuantity >= 1000) return 1
-  if (maxQuantity >= 500) return 2
-  if (maxQuantity >= 250) return 5
-  if (maxQuantity >= 100) return 10
-  if (maxQuantity >= 10) return 20
-  if (maxQuantity >= 1) return 50
-  return 0
-}
-
-export async function parse_listing_array(
-  array
-) {
-  let res = array.map(async x => await parse_listing(x));
-  return res;
-}
-
-export async function parse_listing(
-  e
-) {
+// export function calc_rsm (maxQuantity) {
+//   if (maxQuantity >= 1000) return 1
+//   if (maxQuantity >= 500) return 2
+//   if (maxQuantity >= 250) return 5
+//   if (maxQuantity >= 100) return 10
+//   if (maxQuantity >= 10) return 20
+//   if (maxQuantity >= 1) return 50
+//   return 0
+// }
 
 
-  console.log("parse_listing ", e);
-  let listing_info = e
-  let price = ethers.utils.formatEther(listing_info.priceInWei);
-  let listing_id = ethers.BigNumber.from(e.listingId).toNumber();
+// export async function parse_listing_array(
+//   array
+// ) {
+//   let res = array.map(async x => await erc1155.parse_listing(x));
+//   return res;
+// }
 
-  // quantity listed, but not quanity in circulation
-  let qty = ethers.BigNumber.from(e.quantity).toNumber();
+// export async function parse_listing(
+//   e
+// ) {
+//
+//   console.log("parse_listing ", e);
+//   let listing_info = e
+//   let price = ethers.utils.formatEther(listing_info.priceInWei);
+//   let listing_id = ethers.BigNumber.from(e.listingId).toNumber();
+//
+//   // quantity listed, but not quanity in circulation
+//   let qty = ethers.BigNumber.from(e.quantity).toNumber();
+//
+//   let type = ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber();
+//
+//   let item_info = (await all_items())[type];
+//   let circulating = (await all_items())[type].maxQuantity;
+//   let rarity = {
+//     1: "Common",
+//     2: "Uncommon",
+//     5: "Rare",
+//     10: "Legendary",
+//     20: "Mythical",
+//     50: "Godlike"
+//   }[calc_rsm(circulating)];
+//   // switch rarity:
+//   //   case 1 =>
+//
+//   // let listing_id = ethers.BigNumber.from(e).toNumber();
+//   let listing_dict = {
+//     // maybe discern from ERC1155 and ERC721
+//     name: item_info.name, // something to lookup id -> regular name?
+//     href: listing_id,
+//     type: type,
+//     quantity: qty,
+//     price: price,
+//     rarity: rarity
+//   }
+//   // console.log(
+//   //   // moment().format('MMMM Do YYYY, h:mm:ss a'),
+//   //   ". new listing: ",
+//   //   listing_dict,
+//   //   listing_info
+//   // );
+//   // current_listings().push(listing_dict);
+//
+//   return listing_dict;
+//   // return await get_erc1155_listings(0, status, count);
+// }
 
-  let type = ethers.BigNumber.from(listing_info.erc1155TypeId).toNumber();
-
-  let item_info = (await export_items())[type];
-  let circulating = (await export_items())[type].maxQuantity;
-  let rarity = {
-    1: "Common",
-    2: "Uncommon",
-    5: "Rare",
-    10: "Legendary",
-    20: "Mythical",
-    50: "Godlike"
-  }[calc_rsm(circulating)];
-  // switch rarity:
-  //   case 1 =>
-
-  // let listing_id = ethers.BigNumber.from(e).toNumber();
-  let listing_dict = {
-    // maybe discern from ERC1155 and ERC721
-    name: item_info.name, // something to lookup id -> regular name?
-    href: listing_id,
-    type: type,
-    quantity: qty,
-    price: price,
-    rarity: rarity
-  }
-  // console.log(
-  //   // moment().format('MMMM Do YYYY, h:mm:ss a'),
-  //   ". new listing: ",
-  //   listing_dict,
-  //   listing_info
-  // );
-  current_listings().push(listing_dict);
-
-  return listing_dict;
-  // return await get_erc1155_listings(0, status, count);
-}
-
-export async function get_wearables(
+export async function get_portals(
   status,
   count
 ) {
-  console.log("trying to fetch wearables");
-  return await get_erc1155_listings(0, status, count);
+  console.log("trying to fetch portals");
+  return await get_erc721_listings(0, status, count);
 }
 
-export async function get_badges(
-  status,
-  count
-) {
-  console.log("trying to fetch tickets");
-  return await get_erc1155_listings(1, status, count);
-}
+// export async function get_wearables(
+//   status,
+//   count
+// ) {
+//   console.log("trying to fetch wearables");
+//   return await get_erc1155_listings(0, status, count);
+// }
+//
+// export async function get_badges(
+//   status,
+//   count
+// ) {
+//   console.log("trying to fetch tickets");
+//   return await get_erc1155_listings(1, status, count);
+// }
+//
+// export async function get_consumables(
+//   status,
+//   count
+// ) {
+//   console.log("trying to fetch consumables");
+//   return await get_erc1155_listings(2, status, count);
+// }
+//
+// export async function get_tickets(
+//   status,
+//   count
+// ) {
+//   console.log("trying to fetch tickets");
+//   return await get_erc1155_listings(3, status, count);
+// }
 
-export async function get_consumables(
-  status,
-  count
-) {
-  console.log("trying to fetch consumables");
-  return await get_erc1155_listings(2, status, count);
-}
+// let listing_1155_callback;
+//
+// // pass a funtion to get the arg pased to it, add to UI when called
+// export async function export_new_listings(callback) {
+//   // ERC1155ListingAdd
+//   let diamond = await aavegotchi_diamond();
+//   listing_1155_callback = callback;
+//   diamond.on("ERC1155ListingAdd", parse_new_listing);
+// }
 
-export async function get_tickets(
-  status,
-  count
-) {
-  console.log("trying to fetch tickets");
-  return await get_erc1155_listings(3, status, count);
-}
+let listing_721_callback;
 
-let new_listing_callback;
-
-// pass a funtion to get the arg pased to it, add to UI when called
-export async function export_new_listings(callback) {
+export async function export_new_721_listings(callback) {
   // ERC1155ListingAdd
   let diamond = await aavegotchi_diamond();
-  new_listing_callback = callback;
-  diamond.on("ERC1155ListingAdd", parse_new_listing);
+  listing_721_callback = callback;
+  diamond.on("ERC721ListingAdd", parse_new_listing);
 }
 
 
@@ -432,6 +445,7 @@ export async function parse_new_listing(e) {
   // let diamond = await aavegotchi_diamond();
   // diamond.on("ERC1155ListingAdd", e);
   let listing_id = ethers.BigNumber.from(e).toNumber();
+  // console.log("new listing received", listing_id);
   console.log("parse new listing id:", e, listing_id);
   let diamond = await aavegotchi_diamond();
   let listing_info = await diamond.getERC1155Listing(listing_id);
@@ -441,21 +455,21 @@ export async function parse_new_listing(e) {
 }
 
 
-export async function on_metamask_matic_network() {
-  let provider = await detectEthereumProvider();
-  if (provider) {
-    return provider.networkVersion == 137;
-  }
-  return false;
-}
+// export async function on_metamask_matic_network() {
+//   let provider = await detectEthereumProvider();
+//   if (provider) {
+//     return provider.networkVersion == 137;
+//   }
+//   return false;
+// }
 
 
-const itemTypes = import("./aavegotchi/itemTypes");
-
-// const itemTypes;
-export async function export_items() {
-  return (await itemTypes).itemTypes;
-}
+// const itemTypes = import("./aavegotchi/itemTypes");
+//
+// // const itemTypes;
+// export async function export_items() {
+//   return (await itemTypes).itemTypes;
+// }
 
 // seems to work for looking at transaciton, but returns 4000...
 // window.EntryPoint.common.get_provider().getTransactionCount("0x86935F11C86623deC8a25696E1C19a8659CbF95d")

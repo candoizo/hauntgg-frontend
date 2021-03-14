@@ -42,7 +42,7 @@
     href="https://aavegotchi.com/baazaar/erc1155/"
   )
 
-    img.mainimg(src="/aavegotchi_images/items/wearables/", width=60, height=60, decoding="async")
+    img.mainimg(width=60, height=60, decoding="async")
 
     .flex.flex-col.justify-around.ml-1
 
@@ -59,7 +59,7 @@
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
           #price
 
-| {{ partial "0_js.html" . }}
+| {{ partial "2_js.html" . }}
 | {{ partial "sort_js.html" . }}
 
 | {{ end }}
