@@ -7,20 +7,20 @@ gulp.task('uglify', () =>
   pipeline(
     gulp.src('public/**/*.js'),
     uglify({
-      ecma: "2017",
+      ecma: "2018",
       compress: {
-        passes: 2,
-        drop_console: false,//true,
-        keep_fnames: true
+        passes: 3,
+        drop_console: true,
+        // keep_fnames: true
       },
-      toplevel: false,
+      // toplevel: false,
       warnings: true,
       // safari10: true,
       mangle: {
-        toplevel: false,
-        keep_fnames: true,
+        // toplevel: false,
+        // keep_fnames: true,
       },
-      keep_fnames: true
+      // keep_fnames: true
     }),
     gulp.dest('public/')
   )

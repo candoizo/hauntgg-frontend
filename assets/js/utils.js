@@ -16,19 +16,20 @@ let mm_check = async (cb) => {
 
     let dapp = await window.EntryPoint.mm.detectEthereumProvider();
     if (dapp) {
-      connect.innerText = "Metamask + Matic found! Loading live data...";
-      alert("wtf",)
-      if (await window.EntryPoint.mm.on_metamask_matic_network())
-      cb(); // if on matic, run the setup func
+      if (await window.EntryPoint.mm.on_metamask_matic_network()) {
+        connect.innerText = "Metamask + Matic found! Loading live data...";
+        cb(); // if on matic, run the setup func
+      }
     } else {
       throw dapp;
     }
 
   } catch (e) {
     if (connect) {
-      connect.innerText = "😞 Metamask / Matic not found, want a snapshot?";
+      connect.innerText = "😞 Metamask / Matic not found, try a snapshot?";
       connect.href = "./snapshot/";
       connect.classList.remove("animate-pulse");
+      connect.classList.add("border");
     } else console.log("tried to mm check, could find the web3 connect btn");
   }
 };

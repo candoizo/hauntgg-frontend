@@ -4,14 +4,14 @@ const {
 let formatcolors = {
   "black": "#000",
   "white": "#FFF",
-  "gotchi-purple" : "#7217F4",
-  "gotchi-pink" : "#FA34F3",
-  "godlike" : "",
-  "mythical" :"",
-  "legendary" : "",
-  "rare":"",
-  "uncommon": "",
-  "common":""
+  // "gotchi-purple" : "#7217F4",
+  // "gotchi-pink" : "#FA34F3",
+  // "godlike" : "",
+  // "mythical" :"",
+  // "legendary" : "",
+  // "rare":"",
+  // "uncommon": "",
+  // "common":""
 };
 Object.keys(colors).map((key) => {
   if (Object.keys(colors[key])) {
@@ -24,6 +24,7 @@ Object.keys(colors).map((key) => {
   }
 });
 module.exports = {
+  darkMode: "media",
   experimental: {
     darkModeVariant: true
   },
@@ -31,12 +32,21 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: false,
+  autoprefixer: false,
+  // purge: process.env.HUGO_ENVIRONMENT === "release" ? [
+  //    './test/portals/**/*.html',
+  //    './test/wearables/**/*.html',
+  //    './test/consumables/**/*.html',
+  //    './test/index.html',
+  //    './test/js/*.js',
+  //  ] : false,
+  purge: true,
   plugins: [
     // require('@tailwindcss/typography'),
-    require('@tailwindcss/custom-forms'),
+    // require('@tailwindcss/custom-forms'),
+    require('@tailwindcss/forms'),
     // require('tailwindcss-children'),
-    require('@tailwindcss/line-clamp'),
+    // require('@tailwindcss/line-clamp'),
     require('tailwind-color-vars')({
       strategy: 'extend',
     }),
@@ -83,24 +93,24 @@ module.exports = {
   separator: "__",
   theme: {
     extend: {
-      variants: {
-        display: ['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-not-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
-      },
-      animation: {
-        "bg-pan-left": "bg-pan-left 8s ease-in-out infinite alternate both"
-      },
-      keyframes: {
-        "bg-pan-left": {
-          '0%, 100%': {
-            "background-position": "100% 50%",
-          },
-          '50%': {
-            "background-position": "0% 50%"
-          }
-          // "background-position": "100% 50%",
-          // "background-position": "0% 50%"
-        }
-      },
+      // variants: {
+      //   display: ['children', 'default', 'children-first', 'children-last', 'children-odd', 'children-even', 'children-not-first', 'children-not-last', 'children-hover', 'hover', 'children-focus', 'focus', 'children-focus-within', 'focus-within', 'children-active', 'active', 'children-visited', 'visited', 'children-disabled', 'disabled', 'responsive'],
+      // },
+      // animation: {
+      //   "bg-pan-left": "bg-pan-left 8s ease-in-out infinite alternate both"
+      // },
+      // keyframes: {
+      //   "bg-pan-left": {
+      //     '0%, 100%': {
+      //       "background-position": "100% 50%",
+      //     },
+      //     '50%': {
+      //       "background-position": "0% 50%"
+      //     }
+      //     // "background-position": "100% 50%",
+      //     // "background-position": "0% 50%"
+      //   }
+      // },
       screens: {
         'dark': {
           raw: '(prefers-color-scheme: dark)'

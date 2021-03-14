@@ -51,11 +51,12 @@ let new_thing = async (res) => {
   clone.querySelector("h3").innerText = "Unopened Portal #" + res.number;
   clone.classList.add(res.rarity);
 
-  // if rarity filter is active, add the .hide mod
-  let rarity_filter_opt = document.querySelector("#filter");
-  if (
-    rarity_filter_opt.value.toLowerCase() !== res.rarity && rarity_filter_opt.selectedIndex > 0
-  ) clone.classList.add("hide")
+  // no rarity for portals yet. @todo for open portals maybe
+  // // if rarity filter is active, add the .hide mod
+  // let rarity_filter_opt = document.querySelector("#filter");
+  // if (
+  //   rarity_filter_opt.value.toLowerCase() !== res.rarity && rarity_filter_opt.selectedIndex > 0
+  // ) clone.classList.add("hide")
 
   let insert_at = 0; // usually add to top for latest sort default
   let sort_filter_opt = document.querySelector("#sort");

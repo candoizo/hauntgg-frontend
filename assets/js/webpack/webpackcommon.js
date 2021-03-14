@@ -302,16 +302,16 @@ export { erc1155 };
 //   )
 // }
 
-export async function get_erc721_listings(
-  type,  // 0 == portal, 1 == vrf pending, 1 == open portal, 2 == Aavegotchi.
-  status, // "listed" or "purchased"
-  count
-) {
-  let diamond = await aavegotchi_diamond();
-  return await diamond.getERC721Listings(
-    type, status, count
-  )
-}
+// export async function get_erc721_listings(
+//   type,  // 0 == portal, 1 == vrf pending, 1 == open portal, 2 == Aavegotchi.
+//   status, // "listed" or "purchased"
+//   count
+// ) {
+//   let diamond = await aavegotchi_diamond();
+//   return await diamond.getERC721Listings(
+//     type, status, count
+//   )
+// }
 
 // from aavegotchi-contracts/*/itemTypes.js
 // not exported normally
@@ -382,13 +382,13 @@ export async function get_erc721_listings(
 //   // return await get_erc1155_listings(0, status, count);
 // }
 
-export async function get_portals(
-  status,
-  count
-) {
-  console.log("trying to fetch portals");
-  return await get_erc721_listings(0, status, count);
-}
+// export async function get_portals(
+//   status,
+//   count
+// ) {
+//   console.log("trying to fetch portals");
+//   return await get_erc721_listings(0, status, count);
+// }
 
 // export async function get_wearables(
 //   status,
@@ -432,30 +432,30 @@ export async function get_portals(
 //   diamond.on("ERC1155ListingAdd", parse_new_listing);
 // }
 
-let listing_721_callback;
-
-export async function export_new_721_listings(callback) {
-  // ERC1155ListingAdd
-  let diamond = await aavegotchi_diamond();
-  listing_721_callback = callback;
-  diamond.on("ERC721ListingAdd", parse_new_listing);
-}
-
-
-// pass a funtion to get the arg pased to it, add to UI when called
-export async function parse_new_listing(e) {
-  // ERC1155ListingAdd
-  // let diamond = await aavegotchi_diamond();
-  // diamond.on("ERC1155ListingAdd", e);
-  let listing_id = ethers.BigNumber.from(e).toNumber();
-  // console.log("new listing received", listing_id);
-  console.log("parse new listing id:", e, listing_id);
-  let diamond = await aavegotchi_diamond();
-  let listing_info = await diamond.getERC1155Listing(listing_id);
-  let parsed = await parse_listing(listing_info);
-  console.log("new listing parsed!", parsed);
-  new_listing_callback(parsed);
-}
+// let listing_721_callback;
+//
+// export async function export_new_721_listings(callback) {
+//   // ERC1155ListingAdd
+//   let diamond = await aavegotchi_diamond();
+//   listing_721_callback = callback;
+//   diamond.on("ERC721ListingAdd", parse_new_listing);
+// }
+//
+//
+// // pass a funtion to get the arg pased to it, add to UI when called
+// export async function parse_new_listing(e) {
+//   // ERC1155ListingAdd
+//   // let diamond = await aavegotchi_diamond();
+//   // diamond.on("ERC1155ListingAdd", e);
+//   let listing_id = ethers.BigNumber.from(e).toNumber();
+//   // console.log("new listing received", listing_id);
+//   console.log("parse new listing id:", e, listing_id);
+//   let diamond = await aavegotchi_diamond();
+//   let listing_info = await diamond.getERC1155Listing(listing_id);
+//   let parsed = await parse_listing(listing_info);
+//   console.log("new listing parsed!", parsed);
+//   new_listing_callback(parsed);
+// }
 
 
 // export async function on_metamask_matic_network() {

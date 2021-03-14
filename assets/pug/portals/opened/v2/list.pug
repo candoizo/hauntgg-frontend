@@ -20,19 +20,19 @@
   .sortbox
     
     p Sort
-    select#sort(onchange="smart_sort(this.value)")
+    select#sort(onchange="smart_sort(this.value)").bg-none
       //- value of this corresponds to data-src attribute to sort by
       option(value="index") Latest
       option(value="price") Price
       option(value="number") Portal #
       
-    p Filter
-    select#filter(onchange="rarity_filter(this.value)")
-      option(value="All") All
-      |  {{$data := getJSON "data/general.json"}}
-      |  {{ range $data.rarity }}
-      option(value="{{.}}") {{.}}
-      | {{ end }}
+    //- p Filter
+    //- select#filter(onchange="rarity_filter(this.value)")
+    //-   option(value="All") All
+    //-   |  {{$data := getJSON "data/general.json"}}
+    //-   |  {{ range $data.rarity }}
+    //-   option(value="{{.}}") {{.}}
+    //-   | {{ end }}
 
 .itemlist#list
 
