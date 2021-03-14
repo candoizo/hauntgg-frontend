@@ -14,11 +14,12 @@ let mm_check = async (cb) => {
   let connect = document.querySelector("#web3connect");
   try {
 
-    let dapp = await window.EntryPoint.mm.on_metamask_matic_network;
-
+    let dapp = await window.EntryPoint.mm.detectEthereumProvider();
     if (dapp) {
       connect.innerText = "Metamask + Matic found! Loading live data...";
-      cb();
+      alert("wtf",)
+      if (await window.EntryPoint.mm.on_metamask_matic_network())
+      cb(); // if on matic, run the setup func
     } else {
       throw dapp;
     }

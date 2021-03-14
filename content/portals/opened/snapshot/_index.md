@@ -1,6 +1,6 @@
 ---
-title: opened portals
-description: opened portals from the aavegotchi baazaar!
+title: opened portals snapshot
+description: snapshot of opened portal listings from the aavegotchi baazaar!
 author: candoizo
 type: portals/opened
 tags:

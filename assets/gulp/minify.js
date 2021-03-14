@@ -9,7 +9,7 @@ gulp.task('uglify', () =>
     uglify({
       ecma: "2017",
       compress: {
-        passes: 1,
+        passes: 2,
         drop_console: false,//true,
         keep_fnames: true
       },

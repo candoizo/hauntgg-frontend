@@ -1,8 +1,8 @@
 ---
-title: closed portals
-description: closed portals from the aavegotchi baazaar!
+title: closed portals snapshot
+description: snapshot of closed portal listings from the aavegotchi baazaar!
 author: candoizo
-type: portals/closed/v2
+type: portals/closed
 tags:
 - index
 ---

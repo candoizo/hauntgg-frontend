@@ -1,6 +1,6 @@
 ---
-title: wearables
-description: live wearables feed from the aavegotchi baazaar!
+title: wearables snapshot
+description: snapshot of wearables listings from the aavegotchi baazaar!
 author: candoizo
 type: wearables
 tags:

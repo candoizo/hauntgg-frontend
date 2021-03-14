@@ -32,10 +32,13 @@
 // });
 
 import detectEthereumProvider from '@metamask/detect-provider';
+export {detectEthereumProvider};
+
 export async function on_metamask_matic_network() {
   let provider = await detectEthereumProvider();
   if (provider) {
-    return provider.networkVersion == 137;
+    if (provider.networkVersion == 137)
+    return true;
   }
   return false;
 }

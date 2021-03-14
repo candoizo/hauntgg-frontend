@@ -1,6 +1,6 @@
 ---
-title: consumables
-description: a snapshot of consumables from the aavegotchi baazaar!
+  title: consumables snapshot
+  description: snapshot of consumables listings from the aavegotchi baazaar!
 author: candoizo
 type: consumables
 tags:

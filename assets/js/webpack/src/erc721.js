@@ -90,12 +90,12 @@ export async function get_vrf_pending_portals(
   return await get_erc721_listings(1, status, count);
 }
 
-export async function get_open_portals(
+export async function get_opened_portals(
   status,
   count
 ) {
   console.log("trying to fetch opened portals");
-  return await get_erc1155_listings(2, status, count);
+  return await get_erc721_listings(2, status, count);
 }
 
 export async function get_aavegotchis(
@@ -103,7 +103,7 @@ export async function get_aavegotchis(
   count
 ) {
   console.log("trying to fetch aavegotchis");
-  return await get_erc1155_listings(3, status, count);
+  return await get_erc721_listings(3, status, count);
 }
 
 export async function export_new_listings(callback) {
