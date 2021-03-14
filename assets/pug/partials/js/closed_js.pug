@@ -1,9 +1,10 @@
-//- | {{ if eq .Hugo.Environment "release" }}
+| {{ if eq .Hugo.Environment "styleshim" }}
+
+
+| {{ else }}
 
 | {{ $js := resources.Get "js/closed.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
 script(src="{{$secJs.RelPermalink}}")
 
-//- | {{ else }}
-//- 
-//- 
-//- | {{ end }}
+
+| {{ end }}
