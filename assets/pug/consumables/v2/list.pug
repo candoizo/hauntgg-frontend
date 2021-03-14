@@ -1,0 +1,67 @@
+| {{ define "main" }}
+
+| {{ partial "utils_js.html" . }}
+| {{ partial "dist_js.html" . }}
+
+.pagehead
+  h1 {{ .Title }}
+
+  .flex.w-full.my-2
+    a#web3connect.rounded.mx-auto.bg-transparent.border-b.border-pink-400.text-center.text-xs.p-1.animate-pulse Checking browser for Metamask + Matic...
+
+.flex.flex-col.my-4
+  
+  input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
+  
+  .checkbox.my-auto
+    input#invert.form-checkbox.my-auto.border-pink-400.rounded.border.mx-4(type='checkbox' onchange='invert_list(document.querySelector("#list"))')
+    span Reverse Sort
+    
+  .sortbox
+    
+    p Sort
+    select#sort(onchange="smart_sort(this.value)")
+      //- value of this corresponds to data-src attribute to sort by
+      option(value="index") Latest
+      option(value="price") Price
+    p Filter
+    select#filter(onchange="rarity_filter(this.value)")
+      option(value="All") All
+      |  {{$data := getJSON "data/general.json"}}
+      |  {{ range $data.rarity }}
+      option(value="{{.}}") {{.}}
+      | {{ end }}
+
+.itemlist#list
+
+  //- hidden, cloned for generating new listings
+  a.filter.hidden#template.flex-reverse.justify-between(
+    class="itemcard rarity",
+    data-name="Void",
+    data-price="0",
+    data-rarity="Godlike",
+    target="_blank",
+    href="https://aavegotchi.com/baazaar/erc1155/"
+  )
+
+    img.mainimg(src="/aavegotchi_images/items/wearables/", width=60, height=60, decoding="async")
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3.font-semibold.uppercase.text-xl 
+
+      .flex.flex-row.w-full
+
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/rarity.svg", width=20, height=20)
+          #haunt.mr-2
+
+
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
+          #price
+
+| {{ partial "js/consumables_js.html" . }}
+| {{ partial "sort_js.html" . }}
+
+| {{ end }}

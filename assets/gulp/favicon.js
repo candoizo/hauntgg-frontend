@@ -8,6 +8,8 @@ var FAVICON_DATA_FILE = '.faviconData.json';
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
 
+let themeColorCustom = "#9d174d"
+
 gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
     masterPicture: './assets/favicon.png',
@@ -28,7 +30,7 @@ gulp.task('generate-favicon', function (done) {
       },
       windows: {
         pictureAspect: 'noChange',
-        backgroundColor: '#a10505',
+        backgroundColor: themeColorCustom,
         onConflict: 'override',
         assets: {
           windows80Ie10Tile: false,
@@ -42,7 +44,7 @@ gulp.task('generate-favicon', function (done) {
       },
       androidChrome: {
         pictureAspect: 'noChange',
-        themeColor: '#a10505',
+        themeColor: themeColorCustom,
         manifest: {
           name: "haunt.gg",
           display: 'standalone',
@@ -58,7 +60,7 @@ gulp.task('generate-favicon', function (done) {
       safariPinnedTab: {
         pictureAspect: 'blackAndWhite',
         threshold: 60,
-        themeColor: '#a10505'
+        themeColor: themeColorCustom
       }
     },
     settings: {

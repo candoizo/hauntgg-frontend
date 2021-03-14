@@ -1,0 +1,9 @@
+//- | {{ if eq .Hugo.Environment "release" }}
+
+| {{ $js := resources.Get "js/opened.js" }} {{ $secJs := $js | resources.Minify | resources.Fingerprint }}
+script(src="{{$secJs.RelPermalink}}")
+
+//- | {{ else }}
+//- 
+//- 
+//- | {{ end }}

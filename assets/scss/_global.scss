@@ -61,9 +61,9 @@ input,
 select,
 textarea {
   &:focus {
-    box-shadow: none;
-    outline: var(--white) dotted 2px;
-    outline-offset: 0.05em;
+    box-shadow: none !important;
+    outline: var(--white) dotted 2px !important;
+    outline-offset: 0.05em !important;
   }
 }
 

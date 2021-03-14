@@ -15,7 +15,7 @@
     - json
     - node
   rules:
-    no-unused-vars: ['warn']
+    no-unused-vars: ['off']
     node/no-unpublished-require: ['off']
   ignorePatterns:
     - node_modules/

@@ -3,6 +3,8 @@
 .pagehead
   h1 {{ .Title }}
   | {{ partial "updated_at.html" . }}
+  
+  a(href="/wearables/").text-xs.my-2 Want to try live data? It's finally here!
 
 
 
@@ -11,10 +13,10 @@
   input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
   
   .sortbox
-    p Sort by
+    p Sort
     select#sort(onchange="resort()")
       option Price
-    p Filter by
+    p Filter
     select#filter(onchange="rarity_filter(this.value)")
       option(value="All") All
       |  {{$data := getJSON "data/general.json"}}

@@ -1,6 +1,6 @@
 ---
 title: dashboard
-description: a simple hub for the aavegotchi baazaar!
+description: the aavegotchi baazaargain hunter's fren!
 author: candoizo
 tags:
 - index
