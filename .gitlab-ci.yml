@@ -33,7 +33,8 @@ preview:
     - preview
     - v2-dapp
   script:
-    - yarn && yarn build
+    - yarn
+    - yarn build
     - rm -rf public/layouts public/data public/assets
 
 pages:

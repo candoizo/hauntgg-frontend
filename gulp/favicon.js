@@ -82,7 +82,7 @@ gulp.task('generate-favicon', function (done) {
 gulp.task('inject-favicon-markups', function () {
   return gulp.src(['./hugo/public/**/*.html'])
     .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-    .pipe(gulp.dest('./public/'));
+    .pipe(gulp.dest('./hugo/public/'));
 });
 // Check for updates on RealFaviconGenerator (think: Apple has just
 // released a new Touch icon along with the latest version of iOS).
