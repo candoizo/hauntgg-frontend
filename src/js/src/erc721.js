@@ -119,7 +119,7 @@ export async function parse_listing(
     console.log("no mrs, hmm", e);
     let rarity = "Common";
     if (mrs >= 580) rarity = "Godlike";
-    else if (mrs >= 520) rarity = "Mythical";
+    else if (mrs >= 525) rarity = "Mythical";
     else if (mrs >= 450) rarity = "Rare";
 
     extra_info = {
