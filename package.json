@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --progress",
     "prod": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.js",
-    "build": "webpack --progress --config webpack.prod.js --no-watch && cd hugo/ && hugo -e release && cd .. && rm -rf hugo/public/layouts hugo/public/data hugo/public/assets && yarn gulp favicon"
+    "build": "webpack --progress --config webpack.prod.js --no-watch && cd hugo/ && hugo -e $NODE_ENV --minify && cd .. && rm -rf hugo/public/layouts hugo/public/data hugo/public/assets && yarn gulp favicon"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
