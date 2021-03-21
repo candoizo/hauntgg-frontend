@@ -143,10 +143,10 @@ a.itemcard {
   // maybe 60px if in list, 45px if on homepage
   // the main visual accent
   img.mainimg {
-    width: 42px;
-    height: 42px;
-    max-width: 42px;
-    max-height: 42px;
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
   }
 
   // tiny images like ghst token, aave ghost, usuall has text beside
@@ -157,6 +157,13 @@ a.itemcard {
     width: 20px;
     max-width: 20px;
     max-height: 20px;
+  }
+
+  img.homeimg {
+    width: 42px;
+    height: 42px;
+    max-width: 42px;
+    max-height: 42px;
   }
 
   // p {
