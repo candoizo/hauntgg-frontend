@@ -31,6 +31,10 @@ preview:
     NODE_ENV: release
   only:
     - preview
+    - v2-dapp
+  script:
+    - yarn && yarn build
+    - rm -rf public/layouts public/data public/assets
 
 pages:
   <<: *job_default
