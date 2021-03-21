@@ -2,6 +2,8 @@ dist/
 node_modules/
 *.bak
 
+.faviconData.json
+public/
 hugo/public
 hugo/resources
 hugo/layouts
