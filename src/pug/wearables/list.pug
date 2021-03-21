@@ -1,0 +1,91 @@
+| {{ define "main" }}
+
+.pagehead
+  h1 {{ .Title }}
+  | {{ partial "updated_at.html" . }}
+  
+  a(href="/wearables/").text-xs.my-2 Want to try live data? It's finally here!
+
+
+
+.flex.flex-col.my-4
+  
+  input(onkeyup="search_filter(this.value)", placeholder="Search", type="Search").search
+  
+  .sortbox
+    p Sort
+    select#sort(onchange="resort()")
+      option Price
+    p Filter
+    select#filter(onchange="rarity_filter(this.value)")
+      option(value="All") All
+      |  {{$data := getJSON "data/general.json"}}
+      |  {{ range $data.rarity }}
+      option(value="{{.}}") {{.}}
+      | {{ end }}
+
+.itemlist#list
+
+  |  {{$data := getJSON "data/wearables/latest.json"}}
+  |  {{ range $data.items }}
+  a.flex-reverse.justify-between(
+    href="{{.href}}", 
+    target="_blank", 
+    data-price="{{.price}}", 
+    data-index="{{.index}}",
+		data-rarity="{{.rarity}}",
+    data-name="{{.name}}",
+    class="itemcard rarity {{.rarity}}"
+  )
+
+    | {{ $src := "/aavegotchi_images/items/consumables/kinship.svg" }}
+    | {{ if strings.HasSuffix .imgurl "svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/kinship.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "128.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/xp.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "127.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/greater_kinship.svg" }}
+    | {{ end }}
+    | {{ if strings.HasSuffix .img_url "129.svg" }}
+    |	{{ $src = "/aavegotchi_images/items/consumables/greater_xp.svg" }}
+    | {{ end }}
+    
+    | {{ $item := replace .name " " "_" }}
+
+
+    img.mainimg(src="/aavegotchi_images/items/wearables/{{ $item }}.svg", width=60, height=60, decoding="async")
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3.font-semibold.uppercase.text-xl {{.name}}
+
+      .flex.flex-row.w-full
+
+        //- .mr-2#haunt ✨{{.rarity}}
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/rarity.svg", width=20, height=20)
+          #haunt.mr-2 {{.rarity}}
+
+
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20)
+          #price.
+            {{ if gt .price 9999 }}
+
+            {{ $a := div .price 1000 }}
+            {{ $b := math.Round $a  }}
+            {{ $c := mul $a 100  }}
+            {{ $d := math.Round $c  }}
+            {{div $d 100}}K
+
+            {{ else }}
+            {{.price}}
+            {{ end }}
+
+  |  {{ end }}
+
+//- | {{ partial "sort_js.html" . }}
+
+| {{ end }}

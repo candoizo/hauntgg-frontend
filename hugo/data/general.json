@@ -1,0 +1,19 @@
+{
+  "rarity": ["Common", "Uncommon", "Rare", "Legendary", "Mythical", "Godlike"],
+  "colors": {
+    "Godlike": "",
+    "Mythical": "",
+    "Legendary": "",
+    "Rare": "",
+    "Uncommon": "",
+    "Common": ""
+  },
+  "defaults": {
+    "closed" : 120,
+    "opened" : 120,
+    "aavegotchis": 120,
+    "wearables": 200,
+    "consumables": 200,
+    "tickets": 250
+  }
+}

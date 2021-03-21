@@ -1,0 +1,219 @@
+// top title + last_updated section
+.pagehead {
+  @apply flex flex-col w-full text-center -my-4;
+
+  h1 {
+    @apply font-bold text-2xl mx-auto mt-2 uppercase
+  }
+}
+
+// contains sort prompt
+.sortbox {
+
+  @apply flex mx-auto w-full justify-center mt-4;
+
+  p {
+    @apply uppercase mx-2 my-auto;
+  }
+
+  select {
+    @apply rounded border appearance-none border-pink-300 py-1 pl-3 pr-3 bg-transparent uppercase text-center;
+
+    // supposed to center the selected text
+    text-align-last: center;
+
+    &:focus {
+      // @apply outline-none
+    }
+
+  }
+
+}
+
+input.search {
+  @apply mx-auto w-3_5 text-base p-1 text-center text-white bg-transparent rounded border-pink-400 border my-2;
+
+  @screen md {
+    @apply w-1_3;
+  }
+}
+
+
+// contains an array of nodes, could be item listings or portals , or sections of subrarities
+.itemlist {
+  @apply flex flex-col mx-auto w-11_12 mb-12;
+
+  @screen md {
+    @apply w-9_12;
+  }
+
+  @screen lg {
+    @apply w-3_4;
+  }
+
+  @screen xl {
+    @apply w-3_4;
+  }
+}
+
+a.itemcard {
+
+  @apply flex flex-row-reverse mx-auto w-full my-2 rounded p-2 justify-between;
+
+  h3 {
+    @apply font-bold text-xl uppercase;
+  }
+
+  #price, #haunt, #brs {
+    @apply font-semibold;
+  }
+
+
+  /* uncss:ignore */
+  &.hide {
+    @apply hidden;
+  }
+
+  /* uncss:ignore */
+  &.filter {
+    @apply hidden;
+  }
+
+  /* uncss:ignore */
+  &.notsearched {
+    @apply hidden;
+  }
+
+  &.opened {
+    // @apply bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700;
+
+    @apply bg-gradient-to-r from-flamingo-800 via-flamingo-700 to-flamingo-600;
+  }
+
+  &.closed {
+    // @apply bg-gradient-to-r from-indigo-800 via-indigo-800 to-indigo-700;
+
+    @apply bg-gradient-to-r from-indigo-800 via-indigo-800 to-indigo-700;
+  }
+
+  &.wearables {
+    // @apply bg-gradient-to-r from-green-800 via-green-800 to-green-700;
+    @apply bg-gradient-to-r from-green-800 via-green-700 to-green-700;
+  }
+
+  &.rarity {
+    &.Godlike {
+      @apply bg-gradient-to-r from-green-500 via-green-500 to-green-400;
+    }
+
+    &.Mythical {
+      @apply bg-gradient-to-r from-pink-600 via-pink-500 to-pink-400;
+    }
+
+    &.Legendary {
+      @apply bg-gradient-to-r from-yellow-700 via-yellow-600 to-yellow-500;
+    }
+
+    &.Rare {
+      @apply bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400;
+    }
+
+    &.Uncommon {
+      @apply bg-gradient-to-r from-blue-500 to-green-400;
+    }
+
+    &.Common {
+      @apply bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500;
+    }
+  }
+
+  &.consumables {
+    @apply bg-gradient-to-r from-pink-800 via-pink-700 to-pink-600;
+  }
+
+  &.tickets {
+    @apply bg-gradient-to-r from-yellow-600 via-yellow-600 to-yellow-500;
+  }
+
+  &.aavegotchis {
+    // @apply bg-gradient-to-r from-red-700 via-red-700 to-red-600;
+    @apply bg-gradient-to-r from-tomato-700 via-tomato-700 to-tomato-600;
+  }
+
+  // maybe 60px if in list, 45px if on homepage
+  // the main visual accent
+  img.mainimg {
+    width: 42px;
+    height: 42px;
+    max-width: 42px;
+    max-height: 42px;
+  }
+
+  // tiny images like ghst token, aave ghost, usuall has text beside
+  img.sprite {
+    @apply m-auto mr-1;
+    // padding-right: .15rem;
+    height: 20px;
+    width: 20px;
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  // p {
+  //   @apply font-semibold;
+  // }
+
+}
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #68D391;
+  // @screen dark-mode {
+  //   border-color: var(--purple-600);
+  // }
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #68D391;
+  // @screen dark-mode {
+  //   background-color: var(--purple-600);
+  // }
+}
+
+.checkbox {
+  @apply w-full flex justify-center text-lg mt-2;
+
+  // #charcase / #split
+  input {
+    @apply my-auto mr-2 border border-pink-400 rounded;
+    // @apply w-full border shadow text-center mx-auto text-xl ;
+
+    @apply text-pink-400;
+
+    &:not(:checked) {
+    //   @screen dark-mode {
+        @apply bg-transparent; // border border-pink-400;
+    //   }
+    }
+    // &:not(:checked) {
+    //   @screen dark-mode {
+    //     @apply bg-indigo-900 ;
+    //   }
+    // }
+
+  }
+
+  input[type='checkbox']:not(:checked) {
+    @apply bg-transparent ;
+  }
+
+  // input#invert {
+  //
+  //
+  //   @apply bg-transparent;
+  //   // @screen dark-mode {
+  //   //   @apply text-orange-500;
+  //   // }
+  // }
+
+}

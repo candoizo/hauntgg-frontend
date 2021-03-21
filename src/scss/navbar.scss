@@ -1,0 +1,213 @@
+nav {
+  @apply bg-cerise-900 w-full fixed z-10 h-14 ;
+
+  @apply bg-gradient-to-r from-tomato-800 via-cerise-800 to-cerise-700;
+
+  img {
+    max-width: 40px;
+    max-height: 40px;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+  }
+
+  @screen lg {
+    @apply px-10 flex flex-row;
+  }
+
+  .navtitle { // has img + title/subtitle
+    @apply flex h-14 w-full;
+
+    a { // contains title/subtitle
+      @apply flex-col my-auto no-underline;
+    }
+
+    img {
+      @apply rounded;
+    }
+  }
+
+  .navburger {
+    @apply py-6 h-full my-auto px-8;
+
+    // @screen lg {
+
+    // cursor: pointer;
+    // display: block;
+    // height: 3.25rem;
+    // position: relative;
+    // width: 3.25rem;
+    // height: 100%;
+    // margin-left: auto;
+
+    @apply w-12 h-12 relative mx-auto;
+
+    // replace with kebab
+    @screen lg {
+      @apply hidden;
+    }
+
+    span {
+
+      // display: block;
+      height: 1px;
+      left: calc(50% - 8px);
+      position: absolute;
+      background-color: var(--heading-color);
+      transform-origin: center;
+      transition-duration: 86ms;
+      transition-property: background-color, opacity, transform;
+      transition-timing-function: ease-out;
+      width: 16px;
+
+      &:nth-child(1) {
+        top: calc(50% - 6px);
+      }
+
+      &:nth-child(2) {
+        top: calc(50% - 1px);
+      }
+
+      &:nth-child(3) {
+        top: calc(50% + 4px);
+      }
+    }
+    // }
+
+  }
+
+}
+
+.nav {
+  background-color: var(--secondary-bg-color);
+  box-shadow: 0 8px 16px rgba(10, 10, 10, .1);
+  // padding: 0.5rem 0;
+  width: 100%;
+  // display: none;
+  margin-top: 0;
+  @apply rounded-b-lg;
+  @screen lg {
+    @apply flex bg-transparent my-auto shadow-none;
+  }
+
+  li {
+    @apply text-center font-semibold p-2;
+  }
+}
+// nav {
+//
+//   @apply bg-pink-800 w-full fixed z-10 h-14;
+//
+//   @screen lg {
+//     @apply flex px-10;
+//   }
+//
+//   img {
+//     @apply mx-auto;
+//   }
+//
+//   ul {
+//     @apply text-center;
+//
+//     li {
+//       @apply py-2;
+//     }
+//
+//   }
+//
+//   a {
+//     @apply text-white no-underline font-semibold text-base;
+//
+//     &:hover {
+//       @apply no-underline text-pink-300;
+//     }
+//
+//     &:visited {}
+//
+//     &:active {}
+//   }
+//
+// }
+//
+// .navbar-burger {
+//   @apply py-6 h-full my-auto px-8;
+// }
+//
+// .navbar-burger {
+//   @apply py-6 h-full my-auto px-8;
+//
+//   // @screen lg {
+//
+//   // cursor: pointer;
+//   // display: block;
+//   // height: 3.25rem;
+//   // position: relative;
+//   // width: 3.25rem;
+//   // height: 100%;
+//   // margin-left: auto;
+//
+//   @apply w-12 h-12 relative mx-auto;
+//
+//   // replace with kebab
+//   @screen lg {
+//     @apply hidden;
+//   }
+//
+//   span {
+//
+//     // display: block;
+//     height: 1px;
+//     left: calc(50% - 8px);
+//     position: absolute;
+//     background-color: var(--heading-color);
+//     transform-origin: center;
+//     transition-duration: 86ms;
+//     transition-property: background-color, opacity, transform;
+//     transition-timing-function: ease-out;
+//     width: 16px;
+//
+//     &:nth-child(1) {
+//       top: calc(50% - 6px);
+//     }
+//
+//     &:nth-child(2) {
+//       top: calc(50% - 1px);
+//     }
+//
+//     &:nth-child(3) {
+//       top: calc(50% + 4px);
+//     }
+//   }
+//   // }
+//
+// }
+//
+//
+// .nav {
+//   background-color: var(--secondary-bg-color);
+//   box-shadow: 0 8px 16px rgba(10, 10, 10, .1);
+//   padding: 0.5rem 0;
+//   width: 100%;
+//   // display: none;
+//   margin-top: 0;
+//   @screen lg {
+//     @apply flex bg-transparent my-auto shadow-none;
+//   }
+//   //
+//   // @screen md {
+//   //   @apply text-sm;
+//   // }
+// }
+//
+//
+// .brand {
+//
+//   &.icon {
+//       max-width: 40px;
+//       max-height: 40px;
+//       height: 40px;
+//       width: 40px;
+//
+//   }
+//
+// }

@@ -1,0 +1,59 @@
+| {{ define "main" }}
+
+| {{ $opts := (dict "type" "erc721" "category" 0 "count" 250 )}}
+| {{ partial "js/bootstrap_listing_js.html" $opts }}
+
+.pagehead
+  h1 {{ .Title }}
+
+  | {{ partial "web3.html" }}
+
+.flex.flex-col.my-4
+
+  | {{ partial "invert.html" }}
+
+  .sortbox
+    
+    p Sort by
+    select#sort(onchange="window.EntryPoint.utils.smart_sort(this.value)").bg-none
+      //- value of this corresponds to data-src attribute to sort by
+      option(value="href") Newest
+      option(value="price") Price
+      option(value="number") Portal #
+    //- p Filter
+    //- select#filter(onchange="rarity_filter(this.value)")
+    //-   option(value="All") All
+    //-   |  {{$data := getJSON "data/general.json"}}
+    //-   |  {{ range $data.rarity }}
+    //-   option(value="{{.}}") {{.}}
+    //-   | {{ end }}
+
+
+.itemlist#list
+
+.hidden
+  //- hidden, cloned for generating new listings
+  a#template.itemcard.closed(
+    target="_blank",
+    rel="noopener noreferrer",
+    href="https://aavegotchi.com/baazaar/erc721/"
+  )
+
+    img.mainimg(src="/aavegotchi_images/portal_sealed_optimized.svg", width=60, height=60, decoding="async")
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3 Unopened Portal #
+
+      .flex.flex-row.w-full
+
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/gotchi.png", width=20, height=20, decoding="async")
+          #haunt.mr-2 Haunt 1
+
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
+          #price
+
+
+| {{ end }}

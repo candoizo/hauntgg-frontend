@@ -1,0 +1,85 @@
+baseURL: http://localhost:1313
+bind: 0.0.0.0
+languageCode: "en-us"
+title: "haunt.gg"
+disableHugoGeneratorInject: true
+disableKinds:
+  - taxonomy
+  - term
+ignoreFiles: ["\\.bak$" ]
+
+# conentDir: "../d"
+layoutDir: "../dist/layouts"
+assetDir: "../dist/assets"
+dataDir: "../dist/data"
+staticDir:
+- static
+- ../dist/ # webpack chunks appear here
+# since im including all of dist, i need to remove the templates to prevent them from mucking up the static site
+
+# holy this fixed gitllab allowing me to preview in job artifacts..!
+relativeURLs: true
+build:
+  writeStats: true
+summarylength: 8
+enableEmoji: true
+enableRobotsTXT: true
+pygmentsCodeFences: true
+pygmentsUseClasses: true
+
+imaging:
+  exif:
+    includeFields: ""
+
+markup:
+  goldmark:
+    parser:
+      autoHeadingID: false
+    renderer:
+      unsafe: true
+
+params:
+  title: "haunt.gg"
+  desc: "waatching the baazaar!"
+  author: candoizo
+  description: haunt.gg indexes listings on the aavegotchi baazaar!
+  profilePicture: "profile.png"
+  displayMode: "dark"
+  indexdateformat: Mon. Jan 2, 2006
+
+menu:
+  main:
+    - name: "🌌 Closed"
+      weight: 200
+      identifier: "closed_portals"
+      url: "/portals/closed/"
+    - name: "🌀 Opened"
+      weight: 300
+      identifier: "opened_portals"
+      url: "/portals/opened/"
+    - name: "👾 Aavegotchis"
+      weight: 400
+      identifier: "aavegotchis"
+      url: "/aavegotchis/"
+    - name: "🎩 Wearables"
+      weight: 500
+      identifier: "wearables"
+      url: "/wearables/"
+    - name: "⚗️ Consumables"
+      weight: 600
+      identifier: "consumables"
+      url: "/consumables/"
+    - name: "🎫 Tickets"
+      weight: 600
+      identifier: "tickets"
+      url: "/tickets/"
+
+    # - name: "👾 Aavegotchis"
+    #   weight: 600
+    #   identifier: "aavegotchis"
+    #   url: "/aavegotchis/"
+
+    # - name: "aavegotchi.com"
+    #   weight: 900
+    #   identifier: "repo"
+    #   url: "https://aavegotchi.com"

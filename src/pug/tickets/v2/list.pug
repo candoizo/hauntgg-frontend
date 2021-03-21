@@ -1,0 +1,59 @@
+| {{ define "main" }}
+
+| {{ $opts := (dict "type" "erc1155" "category" 3 "count" 300 )}}
+| {{ partial "js/bootstrap_listing_js.html" $opts }}
+
+.pagehead
+  h1 {{ .Title }}
+
+  | {{ partial "web3.html" }}
+
+.flex.flex-col.my-4
+  
+  //- input(onkeyup="window.EntryPoint.utils.search_filter(this.value)", placeholder="Search", type="Search").search
+  
+  | {{ partial "invert.html" }}
+    
+  .sortbox
+    
+    p Sort
+    select#sort(onchange="window.EntryPoint.utils.smart_sort(this.value)")
+      //- value of this corresponds to data-src attribute to sort by
+      option(value="href") Latest
+      option(value="price") Price
+    p Show
+    select#filter(onchange="window.EntryPoint.utils.rarity_filter(this.value)")
+      option(value="All") All
+      |  {{$data := getJSON "data/general.json"}}
+      |  {{ range $data.rarity }}
+      option(value="{{.}}") {{.}}
+      | {{ end }}
+
+.itemlist#list
+
+.hidden
+  //- hidden, cloned for generating new listings
+  a#template.itemcard.tickets.rarity(
+    target="_blank",
+    rel="noopener noreferrer",
+    href="https://aavegotchi.com/baazaar/erc1155/"
+  )
+
+    img.mainimg(data-src="/aavegotchi_images/tickets/", width=60, height=60, decoding="async")
+
+    .flex.flex-col.justify-around.ml-1
+
+      h3 
+
+      .flex.flex-row.w-full
+
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/rarity.svg", width=20, height=20, decoding="async")
+          #haunt.mr-2
+
+
+        .flex
+          img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
+          #price
+
+| {{ end }}

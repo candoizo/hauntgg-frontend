@@ -1,0 +1,74 @@
+| {{ define "main" }}
+
+.pagehead
+  h1 {{ .Title }}
+  | {{ partial "updated_at.html" . }}
+
+.sortbox
+  p Sort by
+  select#sort(onchange="resort()")
+    option Price
+    option Portal #
+
+//- .flex.flex-col.mx-auto.w-11_12#list
+.itemlist#list
+
+  //- closed portal item
+  //- a#template.rounded.flex.flex-col.p-2.mx-auto.my-2.w-full.md___w-3_5.hidden.bg-gradient-to-r.from-indigo-900.via-indigo-800.to-indigo-700
+  //- a.hidden.itemcard.opened#template
+  //- 
+  //-   .flex.justify-between
+  //- 
+  //-     .flex.flex-col.justify-around.ml-1
+  //-       h3.font-semibold.uppercase.text-xl Portal Title
+  //-       //- div Owner
+  //-       .flex.flex-row.flex-row-reverse.justify-between.w-full
+  //-         #haunt 👻 Haunt
+  //-         .flex
+  //-           img.m-auto(src="/aavegotchi_images/ghsttoken.png", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+  //-           #price
+  //- 
+  //-     img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60)
+  
+  |  {{$opened := getJSON "data/portals/opened/latest.json"}}
+  |  {{ range $opened.items }}
+  a.itemcard.opened.flex-reverse.justify-between(
+    href="{{.href}}", 
+    target="_blank", 
+    data-price="{{.price}}", 
+    data-index="{{.index}}"
+  )
+      
+    img(src="/aavegotchi_images/portal_open_optimized.svg", width=60, height=60)
+      
+    .flex.flex-col.justify-around.ml-1
+      
+      h3.font-semibold.uppercase.text-xl Opened Portal \#{{.index}}
+      
+      .flex.flex-row.w-full
+        
+        .flex
+          img.sprite.rounded.object-cover(src="/aavegotchi_images/gotchi.png", width=20, height=20)
+          #price.mr-2 Haunt {{.haunt}}
+        
+        .flex
+          img.m-auto(src="/aavegotchi_images/ghsttoken.svg", width=20, height=20 style="max-width: 20px; max-height: 20px;").mr-1
+          #price.
+            {{ if gt .price 9999 }}
+            
+            {{ $a := div .price 1000 }}
+            {{ $b := math.Round $a  }}
+            {{ $c := mul $a 100  }}
+            {{ $d := math.Round $c  }}
+            {{div $d 100}}K
+            
+            {{ else }}
+            {{.price}}
+            {{ end }}
+              
+  |  {{ end }}  
+
+      
+//- | {{ partial "sort_js.html" . }}
+
+| {{ end }}

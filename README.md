@@ -1,6 +1,6 @@
 <div align=center>
 
-# 👻 haunt.gg
+# 👻 haunt.gg v2
 
 <small>
 

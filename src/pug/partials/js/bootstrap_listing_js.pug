@@ -1,0 +1,10 @@
+script(defer, async).
+  console.log('inline loaded {{.type}} {{.category}} {{.count}}')
+  async function startup(){ 
+     window.EntryPoint.utils.mm_check(
+    window.EntryPoint.utils.dapp_setup(
+      "{{.type}}", {{.category}}, "listed", {{.count}}, window.EntryPoint.utils.new_listing
+    ));
+  }  
+  document.querySelector("#webpack").addEventListener("load", startup)
+  

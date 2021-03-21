@@ -1,16 +1,17 @@
 variables:
-  RELEASE_IMAGE_TEST: server:${CI_COMMIT_SHORT_SHA}
-  RELEASE_IMAGE: server:prod # because gitlab randomly breaks?!?!?
-  NODE_ENV: $CI_COMMIT_REF_NAME
+  NODE_ENV: $CI_COMMIT_REF_NAME # based on whatever branch
 
 .job_template: &job_default
-  image: registry.gitlab.com/hauntgg/hauntgg-frontend/build:rolling
+  image: registry.gitlab.com/hauntgg/dapp/build:rolling
   interruptible: true
+  tags:
+    - rn-beefer
   before_script:
     - ln -s /cache/node_modules ./node_modules
   script:
-    - mkdir -p static
-    - yarn run gulp build
+    - yarn build
+  after_script:
+    - mv hugo/public .
   artifacts:
     paths:
       - public/
@@ -18,18 +19,16 @@ variables:
 dev:
   <<: *job_default
   stage: build
-  # variables:
-    # NODE_ENV: dev
   when: manual
   only:
     - dev
     - preview
 
-prod:
+preview:
   <<: *job_default
   stage: build
-  # variables:
-    # NODE_ENV: prod
+  variables:
+    NODE_ENV: release
   only:
     - preview
 
@@ -37,9 +36,7 @@ pages:
   <<: *job_default
   when: manual
   stage: deploy
-  tags:
-    - rn-beefer
-  image: registry.gitlab.com/hauntgg/hauntgg-frontend/$RELEASE_IMAGE
+  image: registry.gitlab.com/hauntgg/dapp/$RELEASE_IMAGE
   variables:
     # NODE_ENV: $CI_COMMIT_REF_NAME
     GL_TOKEN: $CI_JOB_TOKEN
@@ -48,6 +45,7 @@ pages:
     - release
   script:
     - mkdir -p static
-    - "[[ $RELEASE_IMAGE = build:rolling ]] && yarn && yarn run gulp build || cp -R /public ." # only build:rolling has yarn + deps
+    - "[[ $RELEASE_IMAGE = build:rolling ]] && yarn && yarn build || cp -R /public ." # only build:rolling has yarn + deps
+    - rm -rf public/layouts public/data public/assets
   # after_script:
   #   - yarn run semantic-release

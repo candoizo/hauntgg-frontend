@@ -1,0 +1,32 @@
+nav
+
+  .flex.mx-auto.w-full
+
+    .navtitle
+  
+      a.mx-4(href='/')
+        | {{ $image := resources.Get "aavegotchi.gif" }}
+        | {{ $smallimg := $image.Resize "160x"}}
+        img(src='{{ $smallimg.RelPermalink }}', alt='profile picture')
+        
+        a.flex.flex-col.my-auto(href="/").no-underline
+          .font-semibold {{ .Site.Params.title }}
+          .font-normal.text-xs {{ .Site.Params.desc }}
+              
+    a.navburger(role='button', data-target='navlist', aria-label='menu', aria-expanded='false', onclick!=`document.querySelector('#navlist').classList.toggle('hidden')`)
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+      span(aria-hidden='true')
+
+
+  ul#navlist.nav.my-auto.ml-auto.w-4_5.justify-around.hidden
+    
+    | {{ $url := .RelPermalink }} {{ range .Site.Menus.main }} {{ $active := eq $url .URL }}
+    a( href="{{ .URL }}") 
+      li {{ .Name }}
+    | {{ end }}
+    
+    | {{ if .Site.IsMultiLingual }}{{ range $.Site.Home.AllTranslations }}
+    li
+      a(href='{{ .Permalink }}', title='{{ .Language.LanguageName }}') {{ .Language.LanguageName }}
+    | {{ end }}{{ end }}

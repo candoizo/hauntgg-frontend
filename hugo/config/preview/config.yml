@@ -1,0 +1,3 @@
+baseURL: https://hauntgg.gitlab.io/dapp/
+# holy this fixed gitllab allowing me to preview in job artifacts..!
+relativeURLs: false

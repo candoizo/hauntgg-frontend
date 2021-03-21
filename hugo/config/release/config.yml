@@ -1,0 +1,3 @@
+baseURL: https://haunt.gg
+# holy this fixed gitllab allowing me to preview in job artifacts..!
+relativeURLs: false

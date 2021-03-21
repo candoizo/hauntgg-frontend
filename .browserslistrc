@@ -1,0 +1,7 @@
+# Browsers that we support
+
+defaults
+not IE 11
+not IE_Mob 11
+> 0.4%
+last 2 iOS major versions
