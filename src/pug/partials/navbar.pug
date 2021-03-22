@@ -7,7 +7,7 @@ nav
       a.mx-4(href='/')
         | {{ $image := resources.Get "aavegotchi.gif" }}
         | {{ $smallimg := $image.Resize "160x"}}
-        img(src='{{ $smallimg.RelPermalink }}', alt='profile picture')
+        img(src='{{ $smallimg.RelPermalink }}', alt='icon')
         
         a.flex.flex-col.my-auto(href="/").no-underline
           .font-semibold {{ .Site.Params.title }}

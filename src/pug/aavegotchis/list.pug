@@ -11,12 +11,23 @@
 .flex.flex-col.my-4
 
   input#search.search(onkeyup="window.EntryPoint.utils.search_filter(this.value)", placeholder="Search", type="Search")
-
   | {{ partial "invert.html" }}
 
   .sortbox
+    
+    |
+    .
+      {{ $opts = dict 
+        "href" "Latest" 
+        "price" "Price" 
+        "number" "Portal #" 
+        "brs" "Base Rarity" 
+        "mrs" "Mod. Rarity" 
+      }}
+      {{ partial "sort.html" $opts }}
+    
     p Sort
-    select#sort(onchange="window.EntryPoint.utils.smart_sort(this.value)").bg-none
+    select#sort(onchange="window.EntryPoint.utils.smart_sort(this.value)")
       //- value of this corresponds to data-src attribute to sort by
       option(value="href") Latest
       option(value="price") Price
@@ -26,12 +37,12 @@
     p Show
     select#filter(onchange="window.EntryPoint.utils.rarity_filter(this.value)")
       option(value="All") All
-      option(value="Common") 360 - 449
-      option(value="Rare") 450 - 524
-      option(value="Mythical") 525-579
-      option(value="Godlike") 580+
+      option(value="Common") 300 - 450
+      option(value="Rare") 451 - 525
+      option(value="Mythical") 526-580
+      option(value="Godlike") 581+
 
-.itemlist#list
+.itemlist.flex-col#list
 
 .hidden
   //- hidden, cloned for generating new listings
@@ -51,14 +62,14 @@
 
         .flex
           img.sprite.rounded.object-cover(src="/aavegotchi_images/gotchi.png", width=20, height=20, decoding="async")
-          #haunt.mr-2 Haunt 1
+          #haunt.mr-1 H
 
         .flex
           img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-          #price.mr-2
+          #price.mr-1
             
         .flex
           img.sprite(src="/aavegotchi_images/rarity.svg", width=20, height=20, decoding="async")
-          #brs
+          #brs.mr-1
 
 | {{ end }}

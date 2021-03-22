@@ -36,8 +36,6 @@ module.exports = {
     connect.textContent = arg;
   },
 
-  // chunk_iter: (list, chunkSize) => [...Array(Math.ceil(list.length / chunkSize))].map((_, i) => list.slice(i * chunkSize, i * chunkSize + chunkSize)),
-
   list_sel: () => document.querySelector("#list"),
   humanize_num: (x) => {
 
@@ -63,8 +61,10 @@ module.exports = {
 
   },
   invert_list: (list) => {
-    if (list.children.length > 1) // list should be an interatble element with .children property
-      [...list.children].reverse().map(node => list.appendChild(node));
+    // if (list.children.length > 1) // list should be an interatble element with .children property
+    //   [...list.children].reverse().map(node => list.appendChild(node));
+
+    list.classList.toggle("flex-col-reverse");
   },
   rarity_filter: (e) => {
     console.log("rarity_filter", e);
@@ -170,10 +170,11 @@ module.exports = {
     ) {
       // clone.querySelector("h3").textContent += `(${res.number})`;
       if (res.name.length > 0)
-        clone.querySelector("h3").textContent = res.name + ` (${res.number})`;
-      else
-        clone.querySelector("h3").textContent += ` (${res.number})`;
+        clone.querySelector("h3").textContent = res.name // + ` (${res.number})`;
+      // else
+      //   clone.querySelector("h3").textContent += ` (${res.number})`;
       clone.classList.add(res.rarity);
+      clone.querySelector("#haunt").textContent += `${res.haunt}#${res.number}`;
       clone.querySelector("#brs").textContent = res.mrs == res.brs ? res.brs : `${res.mrs} (${res.brs})`
     } else if (
       class_list.contains("consumables") || class_list.contains("wearables")
@@ -209,7 +210,6 @@ module.exports = {
     //   rarity_filter_opt.value.toLowerCase() !== res.rarity && rarity_filter_opt.selectedIndex > 0
     // ) clone.classList.add("hide")
 
-
     let insert_at = 0; // usually add to top for latest sort default
 
     let sort = document.querySelector("#sort");
@@ -226,23 +226,9 @@ module.exports = {
         }
       });
     }
-    // if (sort_filter_opt.selectedIndex == 1) {
-    //   // sort by price instead of latest
-    //
-    //   // map until you find a price higher than yours, bail, insert
-    //   [...list.children].some((x, index) => {
-    //     console.log('mapping children for price, im', x.dataset, res);
-    //     if (parseInt(x.dataset.price) > parseInt(res.price)) {
-    //       console.log("sorting by price, so inserting this at: ", index)
-    //       return (insert_at = index);
-    //       // return true;
-    //
-    //     }
-    //   });
-    // }
-
-
+    // else list.appendChild(clone);
     list.insertBefore(clone, list.children[insert_at]);
+
 
   },
 
@@ -254,6 +240,8 @@ module.exports = {
     let lib = window.EntryPoint[lib_type];
     console.log("calling ", lib_type, "get_listings", list_type, list_status, list_count);
     let feed = await lib.get_listings(list_type, list_status, list_count); // allow it to pull using the categorys / number
+
+    document.querySelector("#list").classList.toggle("flex-col-reverse");
 
     let array = await lib.parse_listing_array(feed);
 
@@ -276,11 +264,12 @@ module.exports = {
       if (list_type == 3 && lib_type.toLowerCase() === "erc721") {
         //gotchis
         module.exports.load_gotchis();
-      } else if (lib_type.toLowerCase() === "erc1155" || lib_type.toLowerCase() === "erc721" && list_type == 3) {
-        module.exports.invert_list(module.exports.list_sel());
-        // module.exports.smart_sort()
       }
-    }, 1800);
+      // else if (lib_type.toLowerCase() === "erc1155" || lib_type.toLowerCase() === "erc721" && list_type == 3) {
+      //   module.exports.invert_list(module.exports.list_sel());
+      //   // module.exports.smart_sort()
+      // }
+    }, 1750);
 
     let connect = document.querySelector("#web3connect");
     connect.textContent = "Metamask + Matic found! Live data loaded!";

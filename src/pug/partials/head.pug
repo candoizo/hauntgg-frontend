@@ -31,7 +31,7 @@ link(rel='%s', type='%s', href='%s', title='%s')
 
 //- script(defer, async, src="{{ $sw.RelPermalink }}")
 | {{ $bundle := resources.Get "js/bundle.js" | resources.Fingerprint }}
-script#webpack(defer, async, src="{{ $bundle.RelPermalink }}")
+script#webpack(defer, async, src="{{ $bundle.RelPermalink }}", onload="console.log('bundle loaded')")
 
 
 //- | {{ if not .Site.Params.disableThemeSwitcher }} {{ $anatoleThemeSwitcher := resources.Get "js/anatole-theme-switcher.js" }} {{ $secureThemeSwitcherJS := $anatoleThemeSwitcher | resources.Minify | resources.Fingerprint }}

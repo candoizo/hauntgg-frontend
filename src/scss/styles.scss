@@ -1,4 +1,5 @@
 // top title + last_updated section
+
 .pagehead {
   @apply flex flex-col w-full text-center -my-4;
 
@@ -6,10 +7,8 @@
     @apply font-bold text-2xl mx-auto mt-2 uppercase
   }
 }
-
 // contains sort prompt
 .sortbox {
-
   @apply flex mx-auto w-full justify-center mt-4;
 
   p {
@@ -17,68 +16,62 @@
   }
 
   select {
-    @apply rounded border appearance-none border-pink-300 py-1 pl-3 pr-3 bg-transparent uppercase text-center;
+    @apply rounded border appearance-none border-pink-300 py-1 pl-3 pr-3 bg-transparent uppercase text-center bg-none;
 
+    option {
+      @apply bg-black
+    }
     // supposed to center the selected text
     text-align-last: center;
 
-    &:focus {
-      // @apply outline-none
-    }
-
+    // &:focus {
+    //   // @apply outline-none
+    // }
   }
-
 }
 
 input.search {
   @apply mx-auto w-3_5 text-base p-1 text-center text-white bg-transparent rounded border-pink-400 border my-2;
-
   @screen md {
     @apply w-1_3;
   }
 }
-
-
 // contains an array of nodes, could be item listings or portals , or sections of subrarities
 .itemlist {
-  @apply flex flex-col mx-auto w-11_12 mb-12;
-
+  @apply mx-auto w-11_12 mb-12 flex;
+  // flex-direction: column;
   @screen md {
     @apply w-9_12;
   }
-
   @screen lg {
     @apply w-3_4;
   }
-
   @screen xl {
     @apply w-3_4;
   }
 }
 
 a.itemcard {
-
   @apply flex flex-row-reverse mx-auto w-full my-2 rounded p-2 justify-between;
 
+  h2,
   h3 {
     @apply font-bold text-xl uppercase;
   }
 
-  #price, #haunt, #brs {
-    @apply font-semibold;
+  #brs,
+  #haunt,
+  #price {
+    @apply font-semibold mr-1;
   }
-
-
   /* uncss:ignore */
   &.hide {
     @apply hidden;
   }
-
   /* uncss:ignore */
   &.filter {
     @apply hidden;
   }
-
   /* uncss:ignore */
   &.notsearched {
     @apply hidden;
@@ -86,13 +79,11 @@ a.itemcard {
 
   &.opened {
     // @apply bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700;
-
     @apply bg-gradient-to-r from-flamingo-800 via-flamingo-700 to-flamingo-600;
   }
 
   &.closed {
     // @apply bg-gradient-to-r from-indigo-800 via-indigo-800 to-indigo-700;
-
     @apply bg-gradient-to-r from-indigo-800 via-indigo-800 to-indigo-700;
   }
 
@@ -139,7 +130,6 @@ a.itemcard {
     // @apply bg-gradient-to-r from-red-700 via-red-700 to-red-600;
     @apply bg-gradient-to-r from-tomato-700 via-tomato-700 to-tomato-600;
   }
-
   // maybe 60px if in list, 45px if on homepage
   // the main visual accent
   img.mainimg {
@@ -148,7 +138,6 @@ a.itemcard {
     max-width: 60px;
     max-height: 60px;
   }
-
   // tiny images like ghst token, aave ghost, usuall has text beside
   img.sprite {
     @apply m-auto mr-1;
@@ -165,11 +154,9 @@ a.itemcard {
     max-width: 42px;
     max-height: 42px;
   }
-
   // p {
   //   @apply font-semibold;
   // }
-
 }
 
 .toggle-checkbox:checked {
@@ -189,31 +176,27 @@ a.itemcard {
 
 .checkbox {
   @apply w-full flex justify-center text-lg mt-2;
-
   // #charcase / #split
   input {
-    @apply my-auto mr-2 border border-pink-400 rounded;
+    @apply my-auto mr-2 border border-pink-400 rounded-sm;
     // @apply w-full border shadow text-center mx-auto text-xl ;
-
     @apply text-pink-400;
 
     &:not(:checked) {
-    //   @screen dark-mode {
-        @apply bg-transparent; // border border-pink-400;
-    //   }
+      //   @screen dark-mode {
+      @apply bg-transparent; // border border-pink-400;
+      //   }
     }
     // &:not(:checked) {
     //   @screen dark-mode {
     //     @apply bg-indigo-900 ;
     //   }
     // }
-
   }
 
   input[type='checkbox']:not(:checked) {
-    @apply bg-transparent ;
+    @apply bg-transparent;
   }
-
   // input#invert {
   //
   //
@@ -222,5 +205,4 @@ a.itemcard {
   //   //   @apply text-orange-500;
   //   // }
   // }
-
 }

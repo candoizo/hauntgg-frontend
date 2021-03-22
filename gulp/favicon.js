@@ -47,9 +47,14 @@ gulp.task('generate-favicon', function (done) {
         themeColor: themeColorCustom,
         manifest: {
           name: "haunt.gg",
+          start_url: "/?src=pwa",
           display: 'standalone',
           orientation: 'notSet',
           onConflict: 'override',
+          // "start_url": "/?src=pwa",
+          // "display": "standalone",
+          // "background_color": "#000000",
+          // "theme_color": "#be0e6d"
           declared: true
         },
         assets: {

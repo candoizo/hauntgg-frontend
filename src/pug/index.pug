@@ -6,7 +6,7 @@
     h1 {{ .Title }}
     | {{ partial "updated_at.html" . }}
 
-  .itemlist.my-6#list
+  .itemlist.my-6#list.flex-col
 
     a(href="/portals/closed/").itemcard.closed
 
@@ -14,186 +14,48 @@
 
       .flex.flex-col.justify-around.ml-1
 
-        h3.font-semibold.uppercase.text-xl Closed Portals
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{ $data := getJSON "data/portals/closed/latest.json" }}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Closed Portals
 
     a(href="/portals/opened/").itemcard.opened
 
-      img.homeimg(src="/aavegotchi_images/portal_open_optimized.svg", width=42, height=42, decoding="async")
+      img.homeimg(alt="", src="/aavegotchi_images/portal_open_optimized.svg", width=42, height=42, decoding="async")
 
       .flex.flex-col.justify-around.ml-1
 
-        h3.font-semibold.uppercase.text-xl Opened Portals
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{$data := getJSON "data/portals/opened/latest.json"}}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Opened Portals
 
     a(href="/aavegotchis/").itemcard.aavegotchis
     
-      img.homeimg(src="/aavegotchi_images/rarity.svg", width=42, height=42, decoding="async")
+      img.homeimg(alt="", src="/aavegotchi_images/rarity.svg", width=42, height=42, decoding="async")
       
       .flex.flex-col.justify-around.ml-1
         
-        h3.font-semibold.uppercase.text-xl Aavegotchis
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{ $data := getJSON "data/consumables/latest.json" }}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Aavegotchis
                 
     a(href="/wearables/").itemcard.wearables
       
-      img.homeimg(src="/aavegotchi_images/wearables.svg", width=42, height=42, decoding="async")
+      img.homeimg(alt="", src="/aavegotchi_images/wearables.svg", width=42, height=42, decoding="async")
       
       .flex.flex-col.justify-around.ml-1
         
-        h3.font-semibold.uppercase.text-xl Wearables
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{ $data := getJSON "data/wearables/latest.json" }}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Wearables
 
     a(href="/consumables/").itemcard.consumables
       
-      img.homeimg(src="/aavegotchi_images/consumables.svg", width=42, height=42, decoding="async")
+      img.homeimg(alt="", src="/aavegotchi_images/consumables.svg", width=42, height=42, decoding="async")
       
       .flex.flex-col.justify-around.ml-1
         
-        h3.font-semibold.uppercase.text-xl Consumables
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{ $data := getJSON "data/consumables/latest.json" }}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Consumables
               
               
     a(href="/tickets/").itemcard.tickets
     
-      img.homeimg(src="/aavegotchi_images/ticket.svg", width=42, height=42, decoding="async")
+      img.homeimg(alt="", src="/aavegotchi_images/ticket.svg", width=42, height=42, decoding="async")
     
       .flex.flex-col.justify-around.ml-1
     
-        h3.font-semibold.uppercase.text-xl Raffle Tickets
-        //- //- div Owner
-        //- .flex.flex-row.justify-between.w-full
-        //-   //- #haunt 👻 Haunt:
-        //-   .flex
-        //-     img.sprite(src="/aavegotchi_images/ghsttoken.png", width=20, height=20, decoding="async")
-        //-     #price.
-        //-       {{ $data := getJSON "data/consumables/latest.json" }}
-        //-       {{ $min := $data.min_price }}
-        //-       {{ $max := $data.max_price }}
-        //- 
-        //-       {{ if gt $max 9999 }}
-        //- 
-        //-       {{ $a := div $max 1000 }}
-        //-       {{ $b := math.Round $a  }}
-        //-       {{ $c := mul $a 100  }}
-        //-       {{ $d := math.Round $c  }}
-        //-       {{ $min }} - {{div $d 100}}K
-        //- 
-        //-       {{ else }}
-        //- 
-        //-       {{ $min }} - {{ $max }}
-        //- 
-        //-       {{ end }}
+        h2 Raffle Tickets
               
               
     //- a(href="/all/new/").itemcard.tickets

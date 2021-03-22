@@ -169,7 +169,8 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/wordlists\//, /bip39\/src$/),
+
+    new webpack.IgnorePlugin(/^\.\/wordlists\//,),
     new WebpackBuildNotifierPlugin(),
 
     // new SWPrecacheWebpackPlugin(
