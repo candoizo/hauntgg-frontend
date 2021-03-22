@@ -15,16 +15,16 @@
 
   .sortbox
     
-    |
-    .
-      {{ $opts = dict 
-        "href" "Latest" 
-        "price" "Price" 
-        "number" "Portal #" 
-        "brs" "Base Rarity" 
-        "mrs" "Mod. Rarity" 
-      }}
-      {{ partial "sort.html" $opts }}
+    //- |
+    //- .
+    //-   {{ $opts = dict 
+    //-     "href" "Latest" 
+    //-     "price" "Price" 
+    //-     "number" "Portal #" 
+    //-     "brs" "Base Rarity" 
+    //-     "mrs" "Mod. Rarity" 
+    //-   }}
+    //-   {{ partial "sort.html" $opts }}
     
     p Sort
     select#sort(onchange="window.EntryPoint.utils.smart_sort(this.value)")
